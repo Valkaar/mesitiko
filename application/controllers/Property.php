@@ -12,7 +12,7 @@ class Property extends CI_Controller {
     }
     
     public function test2() {
-        echo "test20";
+        echo "test243";
     }
     
 }
