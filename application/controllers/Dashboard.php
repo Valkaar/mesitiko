@@ -1,13 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Property extends CI_Controller {
+class Dashboard extends CI_Controller {
     
-    public function add_property() {
+    public function index() {
         $data = array(
             "head_view" => $this->load->view("general/head", array(), true),
             "header_view" => $this->load->view("general/header", array(), true),
-            "content_view" => $this->load->view("property/add_property", array(), true),
+            "content_view" => $this->load->view("dashboard/dashboard", array(), true),
             "side_view" => $this->load->view("general/side", array(), true),
             "footer_view" => $this->load->view("general/footer", array(), true),
             "foot_view" => $this->load->view("general/foot", array(), true) 
