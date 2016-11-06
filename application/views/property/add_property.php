@@ -57,39 +57,47 @@
             <input type="text" class="form-control" id="property_sqm" placeholder="Τετραγωνικά μέτρα" style="width: 100%;">
         </div>
         <div class="col-md-4">
+            <select class="form-control selectpicker" id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
+                <?php foreach ($heatings as $heating) { ?>
+                <option value="<?= $heating["heating_id"]; ?>"><?= $heating["heating_label"]; ?></option>
+                <?php } ?>
+            </select>
         </div>
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            
+            <input type="text" class="form-control" id="property_price" placeholder="Τιμή" style="width: 100%;">
         </div>
         <div class="col-md-4">
-            
+           <input type="text" class="form-control" id="property_levels" placeholder="Επίπεδα" style="width: 100%;">
         </div>
         <div class="col-md-4">
-            
-        </div>
-    </div>
-    <div class="row margin-bottom-30">
-        <div class="col-md-4">
-            
-        </div>
-        <div class="col-md-4">
-            
-        </div>
-        <div class="col-md-4">
-            
+           <input type="text" class="form-control" id="property_floor" placeholder="Όροφος" style="width: 100%;">
         </div>
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            
+            <input type="text" class="form-control" id="balcony_sqm" placeholder="Τετραγωνικά μέτρα μπαλκονιού" style="width: 100%;">
         </div>
         <div class="col-md-4">
-            
+            <input type="text" class="form-control" id="garden_sqm" placeholder="Τετραγωνικά μέτρα κήπου" style="width: 100%;">
         </div>
         <div class="col-md-4">
-            
+            <input type="text" class="form-control" id="property_description" placeholder="Περιγραφή ακινήτου" style="width: 100%;">
+        </div>
+    </div>
+    <div class="row margin-bottom-30">
+        <div class="col-md-4">
+            <label class="radio-inline"><input type="radio" name="furnished">Επιπλωμένο</label>
+            <label class="radio-inline"><input type="radio" name="furnished">Μη επιπλωμένο</label>
+        </div>
+        <div class="col-md-4">
+            <label class="radio-inline"><input type="radio" name="fireplace">Με τζάκι</label>
+            <label class="radio-inline"><input type="radio" name="fireplace">Χωρίς τζάκι</label>
+        </div>
+        <div class="col-md-4">
+            <label class="radio-inline"><input type="radio" name="aircondition">Με κλιματισμό</label>
+            <label class="radio-inline"><input type="radio" name="aircondition">Χωρίς κλιματισμό</label>
         </div>
     </div>
     <div class="row margin-bottom-30">

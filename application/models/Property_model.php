@@ -121,4 +121,20 @@ class Property_model extends CI_Model {
         return $db_handler->query($query)->result_array();
     }
     
+    public function get_heatings($heating_id = null) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                . "heating_id, "
+                . "heating_label "
+                . "from heating "
+                . "where heating_id > 0 ";
+        
+        if (!empty($heating_id)) {
+            $query .= "and heating_id = {$heating_id} ";
+        }
+        
+        return $db_handler->query($query)->result_array();
+    }
+      
 }

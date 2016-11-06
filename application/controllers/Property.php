@@ -13,8 +13,11 @@ class Property extends CI_Controller {
             
             "transaction_types" => $this->Property_model->get_transaction_types(),
             "property_types"    => $this->Property_model->get_property_types(),
-            "property_statuses" => $this->Property_model->get_property_statuses()
+            "property_statuses" => $this->Property_model->get_property_statuses(),
+                
+            "heatings" => $this->Property_model->get_heatings()         
         );
+        
         
         $data = array(
             "head_view"         => $this->load->view("general/head", array(), true),
