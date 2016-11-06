@@ -109,16 +109,6 @@
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <select class="form-control selectpicker" multiple id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
-                <?php foreach ($heatings as $heating) { ?>
-                <option value="<?= $heating["heating_id"]; ?>"><?= $heating["heating_label"]; ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-md-4">
-            
-        </div>
-        <div class="col-md-4">
             <button type="button" class="btn btn-primary pull-right" id="submit_property">Αποθήκευση</button>
         </div>
     </div>
@@ -156,11 +146,23 @@
     
     $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
         var property_object = {
-            "transaction_type": $("#transaction_type_id").val(),
-            "property_type":    $("#property_type_id").val(),
-            
-            
-            
+            "transaction_type":     $("#transaction_type_id").val(),
+            "property_type":        $("#property_type_id").val(),
+            "property_status":      $("#property_status_id").val(),
+            "prefecture":           $("#property_prefecture_id").val(),
+            "municipality":         $("#property_municipallity_id").val(),
+            "area":                 $("#property_area_id").val(),
+            "address":              $("#property_address").val(),
+            "address_no":           $("#property_address_no").val(),
+            "property_sqm":         $("#property_sqm").val(),
+            "heating_id":           $("#property_heating_id").val(),
+            "property_price":       $("#property_price").val(),
+            "property_levels":      $("#property_levels").val(),
+            "property_floor":       $("#property_floor").val(),
+            "balcony_sqm":          $("#property_balcony_sqm").val(),
+            "garden_sqm":           $("#property_garden_sqm").val(),
+            "property_description": $("#property_description").val(),
+                     
             "is_furnished":     $('#is_furnished').bootstrapSwitch('state'),
             "has_fireplace":    $('#has_fireplace').bootstrapSwitch('state'),
             "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')

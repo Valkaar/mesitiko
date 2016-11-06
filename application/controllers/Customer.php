@@ -7,9 +7,9 @@ class Customer extends CI_Controller {
         $this->load->model("Customer_model");
         
         $content_data = array(
-            "user_ids"            => $this->Customer_model->get_user_ids(),
-            "customer_statuses"       => $this->Customer_model->get_user_statuses(),
-            "customer_types"          => $this->Customer_model->get_user_types()                 
+            "user_ids"                => $this->Customer_model->get_user_ids(),
+            "customer_statuses"       => $this->Customer_model->get_customer_statuses(),
+            "customer_types"          => $this->Customer_model->get_customer_types()                 
         );
         
         

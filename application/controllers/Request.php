@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Request extends CI_Controller {
     
     public function add_request() {
-        $this->load->model("Property_model");
+        $this->load->model("Request_model");
         
         $content_data = array(
             "prefectures"       => $this->Request_model->get_prefectures(),
@@ -15,18 +15,15 @@ class Request extends CI_Controller {
             "property_types"    => $this->Request_model->get_property_types(),
             "property_statuses" => $this->Request_model->get_property_statuses(),
                 
-            "heatings" => $this->Property_model->get_heatings() ,
-            
-            "user_ids" => $this->Request_model->get_user_ids(),
-            "customer_ids" => $this->Request_model->get_customer_ids()
+            "heatings"          => $this->Request_model->get_heatings()
         );
         
         
         $data = array(
             "head_view"         => $this->load->view("general/head", array(), true),
-            "header_view"       => $this->load->view("general/header", array("header_title" => "Προσθήκη ακινήτου"), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Προσθήκη ζήτησης"), true),
             
-            "content_view"      => $this->load->view("property/add_property", $content_data, true),
+            "content_view"      => $this->load->view("request/add_request", $content_data, true),
             
             "side_view"         => $this->load->view("general/side", array(), true),
             "footer_view"       => $this->load->view("general/footer", array(), true),
