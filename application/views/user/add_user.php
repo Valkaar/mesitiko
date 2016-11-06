@@ -26,8 +26,14 @@
             </select>
         </div>
         <div class="col-md-4">
-            <label class="radio-inline"><input type="radio" name="isadmin">Διαχειριστής</label>
+            <input type="checkbox" name="is_admin" id="is_admin">
         </div>
     </div>
 </form>
-
+<script>
+    $("#is_admin").bootstrapSwitch({
+        "onText": "Διαχειριστής",
+        "offText": "Απλός χρήστης",
+        "state": true
+    });
+</script>

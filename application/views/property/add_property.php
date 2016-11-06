@@ -88,27 +88,82 @@
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <label class="radio-inline"><input type="radio" name="furnished">Επιπλωμένο</label>
-            <label class="radio-inline"><input type="radio" name="furnished">Μη επιπλωμένο</label>
+            <input type="checkbox" name="is_furnished" id="is_furnished">
         </div>
         <div class="col-md-4">
-            <label class="radio-inline"><input type="radio" name="fireplace">Με τζάκι</label>
-            <label class="radio-inline"><input type="radio" name="fireplace">Χωρίς τζάκι</label>
+            <div class="col-md-6" id="has_fireplace_switch">
+                <input type="checkbox" name="has_fireplace" id="has_fireplace">
+            </div>
+            <div class="col-md-6" id="has_fireplace_input">
+                <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="fireplace_no" id="fireplace_no">
+            </div>
         </div>
         <div class="col-md-4">
-            <label class="radio-inline"><input type="radio" name="aircondition">Με κλιματισμό</label>
-            <label class="radio-inline"><input type="radio" name="aircondition">Χωρίς κλιματισμό</label>
+            <div class="col-md-6" id="has_aircondition_switch">
+                <input type="checkbox" name="has_aircondition" id="has_aircondition">
+            </div>
+            <div class="col-md-6" id="has_aircondition_input">
+                <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="aircondition_no" id="aircondition_no">
+            </div>
         </div>
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            
+            <select class="form-control selectpicker" multiple id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
+                <?php foreach ($heatings as $heating) { ?>
+                <option value="<?= $heating["heating_id"]; ?>"><?= $heating["heating_label"]; ?></option>
+                <?php } ?>
+            </select>
         </div>
         <div class="col-md-4">
             
         </div>
         <div class="col-md-4">
-            
+            <button type="button" class="btn btn-primary pull-right" id="submit_property">Αποθήκευση</button>
         </div>
     </div>
 </form>
+<script>
+    $('#is_furnished').bootstrapSwitch({
+        "onText": "Επιπλωμένο",
+        "offText": "Μη επιπλωμένο",
+        "state": true
+    });    
+    $('#has_fireplace').bootstrapSwitch({
+        "onText": "Τζάκι",
+        "offText": "Χωρίς",
+        "state": true
+    });    
+    $('#has_aircondition').bootstrapSwitch({
+        "onText": "A/C",
+        "offText": "Χωρίς",
+        "state": true
+    });    
+    
+    $('#has_fireplace, #has_aircondition').on('switchChange.bootstrapSwitch', function(event, state) {
+        if (state) {
+            $("#" + event.currentTarget.id + "_switch").addClass("col-md-6");
+            $("#" + event.currentTarget.id + "_switch").removeClass("col-md-12");
+            
+            $("#" + event.currentTarget.id + "_input").show();
+        } else {
+            $("#" + event.currentTarget.id + "_switch").removeClass("col-md-6");
+            $("#" + event.currentTarget.id + "_switch").addClass("col-md-12");
+            
+            $("#" + event.currentTarget.id + "_input").hide();
+        }
+    });
+    
+    $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
+        var property_object = {
+            "transaction_type": $("#transaction_type_id").val(),
+            "property_type":    $("#property_type_id").val(),
+            
+            
+            
+            "is_furnished":     $('#is_furnished').bootstrapSwitch('state'),
+            "has_fireplace":    $('#has_fireplace').bootstrapSwitch('state'),
+            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
+        }
+    });
+</script>
