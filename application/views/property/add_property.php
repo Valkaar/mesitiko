@@ -108,7 +108,7 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <button type="button" class="btn btn-primary pull-right" id="submit_property">Αποθήκευση</button>
         </div>
     </div>
@@ -167,5 +167,7 @@
             "has_fireplace":    $('#has_fireplace').bootstrapSwitch('state'),
             "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
         }
+        
+        console.log(property_object);
     });
 </script>
