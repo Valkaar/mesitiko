@@ -99,7 +99,6 @@
             </div>
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="property_description" placeholder="Περιγραφή ακινήτου" style="width: 100%;">
         </div>
     </div>
     <div class="row margin-bottom-30">
@@ -131,7 +130,7 @@
             
         </div>
         <div class="col-md-4">
-            <button type="button" class="btn btn-primary pull-right" id="submit_property">Αποθήκευση</button>
+            <button type="button" class="btn btn-primary pull-right" id="submit_request">Αποθήκευση</button>
         </div>
     </div>
 </form>
@@ -167,15 +166,35 @@
     });
     
     $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
-        var property_object = {
+        var request_object = {
             "transaction_type": $("#transaction_type_id").val(),
             "property_type":    $("#property_type_id").val(),
+            "property_status":  $("#property_status_id").val(),
+            "prefecture_id":    $("#prefecture_id").val(),
+            "municipality_id":  $("#municipality_id").val(),
+            "area_id":          $("#area_id").val(),
+            "sqm_from":         $("#request_sqm_from").val(),
+            "sqm_to":           $("#request_sqm_to").val(),
+            "balcony_sqm_from": $("#request_balcony_sqm_from").val(),
+            "balcony_sqm_to":   $("#request_balcony_sqm_to").val(),
+            "heating":          $("#heating_type_id").val(),
+            "request_levels":   $("#property_type_id").val(),            
+            "price_from":       $("#request_price_from").val(),
+            "price_to":         $("#request_price_to").val(),
+            "property_levels":  $("#transaction_type_id").val(),
+            "property_floor":   $("#property_type_id").val(),            
+            "pool_sqm_from":    $("#transaction_type_id").val(),
+            "pool_sqm_to":      $("#property_type_id").val(),
+            "garden_sqm_from":  $("#garden_sqm_from").val(),
+            "garden_sqm_to":    $("#garden_sqm_to").val()
             
             
-            
+                                
             "is_furnished":     $('#is_furnished').bootstrapSwitch('state'),
             "has_fireplace":    $('#has_fireplace').bootstrapSwitch('state'),
             "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
         }
+               
+        console.log(request_object);
     });
 </script>

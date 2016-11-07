@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <button type="button" class="btn btn-primary pull-right" id="submit_user">Αποθήκευση</button>
         </div>
     </div>
@@ -54,5 +54,7 @@
             
             "is_admin":     $('#is_admin').bootstrapSwitch('state')
         }
+
+        console.log(user_object);
     });
 </script>

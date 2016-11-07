@@ -32,9 +32,7 @@
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <div class="input-group">
             <input type="text" class="form-control" id="customer_telephone" placeholder="Σταθερό τηλέφωνο" style="width: 100%;">
-            </div>
         </div>
         <div class="col-md-4">
             <input type="text" class="form-control" id="customer_mobile" placeholder="Κινητό τηλέφωνο" style="width: 100%;">
@@ -51,4 +49,27 @@
            <input type="text" class="form-control" id="customer_password" placeholder="Password" style="width: 100%;">
         </div>
     </div>
+    <div class="row margin-bottom-30">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary pull-right" id="submit_customer">Αποθήκευση</button>
+        </div>
+    </div>
 </form>
+<script>
+    $("body").off("click", "#submit_customer").on("click", "#submit_customer", function() {
+        var customer_object = {
+            "customer_type":        $("#customer_type_id").val(),
+            "customer_status":      $("#customer_status_id").val(),
+            "customer_name":        $("#customer_name").val(),
+            "customer_lastname":    $("#customer_lastname").val(),
+            "customer_address":     $("#customer_address").val(),
+            "customer_address_no":  $("#customer_address_no").val(),
+            "customer_telephone":   $("#customer_telephone").val(),
+            "customer_mobile":      $("#customer_mobile").val(),
+            "customer_email":       $("#customer_email").val(),
+            "customer_usename":     $("#customer_username").val(),
+            "customer_password":    $("#customer_password").val()
+        }
+        
+        console.log(customer_object);
+    });
