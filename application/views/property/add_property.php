@@ -168,6 +168,16 @@
             "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
         }
         
+        $.ajax({
+            type:   "post",
+            url:    "/property/save_property",
+            data:   {
+                "property": property_object
+            }
+        }).done(function(data) {
+            console.log(data);
+        });
+        
         console.log(property_object);
     });
 </script>

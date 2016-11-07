@@ -136,5 +136,20 @@ class Property_model extends CI_Model {
         
         return $db_handler->query($query)->result_array();
     }
+    
+    public function save_property($property) {
+        $db_handler = $this->load_db_object();
+        
+        $property_insert_query = "insert into property "
+                . "(property_created_date_time, property_property_status_id, property_property_type_id, property_transaction_type_id, "
+                . "property_heating_id, property_prefecture_id, property_municipality_id, property_area_id, property_sqm, property_price,"
+                . "property_description, property_label, property_address, property_address_no, property_furnished, property_balcony_sqm, "
+                . "property_garden_sqm, property_floor, property_levels, property_fireplace, propery_air_condition, property_pool_sqm) "
+                . "values "
+                . "('" . date("Y-m-d H:i:s") . "', {$property["property_status"]}, {$property["property_type"]}, {$property["transaction_type"]}, "
+                . " ";
+                
+        $db_handler->query($property_insert_query);
+    }
       
 }

@@ -33,4 +33,26 @@ class Property extends CI_Controller {
         $this->load->view("general/main", $data);
     }
     
+    public function save_property() {
+        $this->load->model("Property_model");
+        
+        //$this->input->post(); //isodynamei me $_POST
+        if (!$this->input->post("property")) { //isodynamei me $_POST["property"]
+            echo 10000001;
+            return;
+        }
+        
+        $property = $this->input->post("property");
+        
+        $result = $this->Property_model->save_property($property);
+        
+        if (empty($result)) {
+            echo 10000010;
+        } else if ($result === -1) {
+            echo 10000011;
+        } else {
+            echo 1;
+        }
+    }
+    
 }
