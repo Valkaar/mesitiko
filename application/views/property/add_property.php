@@ -65,6 +65,11 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
+        <div class="col-md-8">
+            <textarea class="form-control" rows="5" cols="184" id="property_description" placeholder="Περιγραφή Ακινήτου"></textarea>
+        </div>
+    </div>
+    <div class="row margin-bottom-30">
         <div class="col-md-4">
             <input type="text" class="form-control" id="property_price" placeholder="Τιμή" style="width: 100%;">
         </div>
@@ -83,7 +88,7 @@
             <input type="text" class="form-control" id="garden_sqm" placeholder="Τετραγωνικά μέτρα κήπου" style="width: 100%;">
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="property_description" placeholder="Περιγραφή ακινήτου" style="width: 100%;">
+            <input type="text" class="form-control" id="property_label" placeholder="Ετικέτα ακινήτου" style="width: 100%;">
         </div>
     </div>
     <div class="row margin-bottom-30">

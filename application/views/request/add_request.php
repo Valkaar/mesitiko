@@ -196,5 +196,17 @@
         }
                
         console.log(request_object);
+        
+        $.ajax({
+            type:   "post",
+            url:    "/request/save_request",
+            data:   {
+                "request": request_object
+            }
+        }).done(function(data) {
+            console.log(data);
+        });
+       
+       
     });
 </script>

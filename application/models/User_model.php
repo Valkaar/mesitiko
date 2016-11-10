@@ -20,5 +20,18 @@ class User_model extends CI_Model {
         
         return $db_handler->query($query)->result_array();
     } 
+    
+    public function save_user($user) {
+        $db_handler = $this->load_db_object();
+        
+        $property_insert_query = "insert into user "
+                . "(user_name, user_lastname, user_username, user_password, user_email, user_isadmin, user_user_status_id "
+                . "values "
+                . " {$user["user_name"]}, {$user["user_lastname"]}, {$user["user_username"]}, {$user["user_password"]}, "
+                . " {$user["user_email"]}, {$user["user_isadmin"]}, {$user["user_status_id"]} ";
+                
+        $db_handler->query($user_insert_query);
+    }
+    
       
 }

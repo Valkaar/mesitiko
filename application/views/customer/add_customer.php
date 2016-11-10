@@ -72,4 +72,16 @@
         }
         
         console.log(customer_object);
+        
+        $.ajax({
+            type:   "post",
+            url:    "/customer/save_customer",
+            data:   {
+                "customer": customer_object
+            }
+        }).done(function(data) {
+            console.log(data);
+        });
+        
+        
     });

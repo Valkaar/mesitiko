@@ -147,7 +147,11 @@ class Property_model extends CI_Model {
                 . "property_garden_sqm, property_floor, property_levels, property_fireplace, propery_air_condition, property_pool_sqm) "
                 . "values "
                 . "('" . date("Y-m-d H:i:s") . "', {$property["property_status"]}, {$property["property_type"]}, {$property["transaction_type"]}, "
-                . " ";
+                . " {$property["property_heating"]}, {$property["property_prefecture"]}, {$property["property_municipality"]}, {$property["property_area"]},"
+                . " {$property["property_sqm"]}, {$property["property_price"]}, '{$property["property_description"]}', '{$property["property_label"]}',"
+                . " {$property["property_address"]}, {$property["property_address_no"]}, {$property["property_furnished"]}, {$property["property_balcony_sqm"]},"
+                . " {$property["property_garden_sqm"]}, {$property["property_floor"]}, {$property["property_levels"]}, {$property["property_fireplace"]}, "
+                . " {$property["propery_air_condition"]}, {$property["property_pool_sqm"]} ";
                 
         $db_handler->query($property_insert_query);
     }

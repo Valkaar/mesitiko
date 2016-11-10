@@ -56,5 +56,15 @@
         }
 
         console.log(user_object);
+        
+        $.ajax({
+            type:   "post",
+            url:    "/user/save_user",
+            data:   {
+                "user": user_object
+            }
+        }).done(function(data) {
+            console.log(data);
+        });
     });
 </script>
