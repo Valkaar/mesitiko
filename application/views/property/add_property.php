@@ -1,7 +1,7 @@
-<form class="form-inline">    
+<form class="form-inline" id="add_property_form">    
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <select class="form-control selectpicker" id="transaction_type_id" title="Επιλέξτε τύπο συναλλαγής...">
+            <select class="form-control selectpicker" id="transaction_type_id" title="Επιλέξτε τύπο συναλλαγής..." required>
                 <?php foreach ($transaction_types as $transaction_type) { ?>
                 <option value="<?= $transaction_type["transaction_type_id"]; ?>"><?= $transaction_type["transaction_type_label"]; ?></option>
                 <?php } ?>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="property_sqm" placeholder="Τετραγωνικά μέτρα" style="width: 100%;">
+            <input type="text" class="form-control" id="property_sqm" placeholder="Τετραγωνικά μέτρα" style="width: 100%;" required>
         </div>
         <div class="col-md-4">
             <select class="form-control selectpicker" id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
@@ -65,8 +65,11 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-8">
-            <textarea class="form-control" rows="5" cols="184" id="property_description" placeholder="Περιγραφή Ακινήτου"></textarea>
+        <div class="col-md-6">
+            <textarea class="form-control" style="width:100%;" rows="5" cols="184" id="property_description" placeholder="Περιγραφή Ακινήτου"></textarea>
+        </div>
+        <div class="col-md-6">
+            <textarea class="form-control" style="width:100%;" rows="5" cols="184" id="property_description_en" placeholder="Περιγραφή Ακινήτου (Αγγλικά)"></textarea>
         </div>
     </div>
     <div class="row margin-bottom-30">
@@ -119,6 +122,8 @@
     </div>
 </form>
 <script>
+    $("#add_property_form").validate();
+    
     $('#is_furnished').bootstrapSwitch({
         "onText": "Επιπλωμένο",
         "offText": "Μη επιπλωμένο",
@@ -150,6 +155,9 @@
     });
     
     $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
+        if (!$("#add_property_form").valid()) {
+            return false;
+        }
         var property_object = {
             "transaction_type":     $("#transaction_type_id").val(),
             "property_type":        $("#property_type_id").val(),
@@ -182,7 +190,5 @@
         }).done(function(data) {
             console.log(data);
         });
-        
-        console.log(property_object);
     });
 </script>

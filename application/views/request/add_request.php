@@ -165,7 +165,7 @@
         }
     });
     
-    $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
+    $("body").off("click", "#submit_request").on("click", "#submit_request", function() {
         var request_object = {
             "transaction_type": $("#transaction_type_id").val(),
             "property_type":    $("#property_type_id").val(),
@@ -186,7 +186,7 @@
             "pool_sqm_from":    $("#transaction_type_id").val(),
             "pool_sqm_to":      $("#property_type_id").val(),
             "garden_sqm_from":  $("#garden_sqm_from").val(),
-            "garden_sqm_to":    $("#garden_sqm_to").val()
+            "garden_sqm_to":    $("#garden_sqm_to").val(),
             
             
                                 
@@ -194,8 +194,6 @@
             "has_fireplace":    $('#has_fireplace').bootstrapSwitch('state'),
             "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
         }
-               
-        console.log(request_object);
         
         $.ajax({
             type:   "post",

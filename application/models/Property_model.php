@@ -137,8 +137,12 @@ class Property_model extends CI_Model {
         return $db_handler->query($query)->result_array();
     }
     
-    public function save_property($property) {
+    public function save_property() {
         $db_handler = $this->load_db_object();
+        
+        $property = $this->input->post("property");
+        
+        var_dump($property);
         
         $property_insert_query = "insert into property "
                 . "(property_created_date_time, property_property_status_id, property_property_type_id, property_transaction_type_id, "
@@ -147,13 +151,13 @@ class Property_model extends CI_Model {
                 . "property_garden_sqm, property_floor, property_levels, property_fireplace, propery_air_condition, property_pool_sqm) "
                 . "values "
                 . "('" . date("Y-m-d H:i:s") . "', {$property["property_status"]}, {$property["property_type"]}, {$property["transaction_type"]}, "
-                . " {$property["property_heating"]}, {$property["property_prefecture"]}, {$property["property_municipality"]}, {$property["property_area"]},"
+                . " {$property["heating_id"]}, {$property["property_prefecture"]}, {$property["property_municipality"]}, {$property["property_area"]},"
                 . " {$property["property_sqm"]}, {$property["property_price"]}, '{$property["property_description"]}', '{$property["property_label"]}',"
                 . " {$property["property_address"]}, {$property["property_address_no"]}, {$property["property_furnished"]}, {$property["property_balcony_sqm"]},"
                 . " {$property["property_garden_sqm"]}, {$property["property_floor"]}, {$property["property_levels"]}, {$property["property_fireplace"]}, "
                 . " {$property["propery_air_condition"]}, {$property["property_pool_sqm"]} ";
                 
-        $db_handler->query($property_insert_query);
+//        $db_handler->query($property_insert_query);
     }
       
 }

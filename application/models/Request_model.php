@@ -164,5 +164,28 @@ class Request_model extends CI_Model {
         
         return $db_handler->query($query)->result_array();
     }
+    
+    public function save_request($request) {
+        $db_handler = $this->load_db_object();
+        
+        var_dump($request);
+        
+        $request_insert_query = "insert into request "
+                . "(request_created_date_time, request_sqm_from, request_sqm_to, request_price_from, "
+                . "request_price_to, request_furnished, request_balcony_sqm_from, request_balcony_sqm_to, request_garden_sqm_from, "
+                . "request_garden_sqm_to, request_floor, request_levels, request_fireplace, request_air_condition, "
+                . "request_pool_sqm_from, request_pool_sqm_to) "
+                . "values "
+                . "('" . date("Y-m-d H:i:s") . "', )";
+        
+        $request_id = $db_handler->query($request_insert_query);
+        
+        foreach ($request["property_type"] as $property_type) {
+            $property_type_insert_query = "insert into request_type "
+                    . "(request_type_request_id, request_type_property_type_id) "
+                    . "values "
+                    . "({$request_id}, {$property_type}) ";
+        }
+    }
      
 }

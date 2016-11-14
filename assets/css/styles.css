@@ -14,3 +14,14 @@
 .margin-bottom-30 {
     margin-bottom: 30px;
 }
+.textarea_full {
+    width: 100%;
+}
+/*.error {
+    border: 1px solid red;
+    width: 100%;
+    text-align: center;
+}*/
+.correct { 
+    border: 1px solid greenyellow;
+}
