@@ -159,5 +159,65 @@ class Property_model extends CI_Model {
                 
 //        $db_handler->query($property_insert_query);
     }
+    
+    public function fetch_property_list() {
+        $db_handler = $this->load_db_object();
+        
+        $property_query = "select "
+                                . "'' as 'property_checked', "
+                                . "p.property_id as 'property_id', "
+                                . "pt.property_type_label as 'property_type', "
+                                . "tt.transaction_type_label as 'property_transaction_type', "
+                                . "pr.prefecture_label as 'property_prefecture', "
+                                . "mu.municipality_label as 'property_municipality',  "
+                                . "ar.area_label as 'property_area', "
+                                . "p.property_sqm as 'property_sqm', "
+                                . "p.property_price as 'property_price', "
+                                . "'' as 'property_actions' "
+                            . "from real_estate.property p " 
+                                . "join real_estate.property_type pt on p.property_property_type_id = pt.property_type_id "
+                                . "join real_estate.transaction_type tt on p.property_transaction_type_id = tt.transaction_type_id "
+                                . "join real_estate.prefecture pr on p.property_prefecture_id = pr.prefecture_id "
+                                . "join real_estate.municipality mu on p.property_municipality_id = mu.municipality_id "
+                                . "join real_estate.area ar on p.property_area_id = ar.area_id";
+        
+        $property_result = $db_handler->query($property_query)->result_array();
+        
+        return json_encode(array("data" => $property_result));
+    }
+    
+    public function get_property_data($property_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "p.property_id, "
+                    . "p.property_property_status_id, "
+                    . "p.property_property_type_id, "
+                    . "p.property_transaction_type_id, "
+                    . "p.property_heating_id, "
+                    . "p.property_prefecture_id, "
+                    . "p.property_municipality_id, "
+                    . "p.property_area_id, "
+                    . "p.property_sqm, "
+                    . "p.property_price, "
+                    . "p.property_description, "
+                    . "p.property_label, "
+                    . "p.property_address, "
+                    . "p.property_address_no, "
+                    . "p.property_furnished, "
+                    . "p.property_balcony_sqm, "
+                    . "p.property_garden_sqm, "
+                    . "p.property_floor, "
+                    . "p.property_levels, "
+                    . "p.property_fireplace, "
+                    . "p.propery_air_condition, "
+                    . "p.property_pool_sqm "
+                . "from real_estate.property p "
+                . "where p.property_id = {$property_id} ";
+                
+        $result = $db_handler->query($query)->row_array();
+        
+        return $result;
+    }
       
 }

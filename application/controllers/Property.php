@@ -33,6 +33,57 @@ class Property extends CI_Controller {
         $this->load->view("general/main", $data);
     }
     
+    public function edit_property($property_id) {
+        $this->load->model("Property_model");
+        
+        $content_data = array(
+            "prefectures"       => $this->Property_model->get_prefectures(),
+            "municipalities"    => $this->Property_model->get_municipalities(),
+            "areas"             => $this->Property_model->get_areas(),
+            
+            "transaction_types" => $this->Property_model->get_transaction_types(),
+            "property_types"    => $this->Property_model->get_property_types(),
+            "property_statuses" => $this->Property_model->get_property_statuses(),
+                
+            "heatings" => $this->Property_model->get_heatings(),
+            
+            "property_data" => $this->Property_model->get_property_data($property_id)
+        );
+        
+        
+        $data = array(
+            "head_view"         => $this->load->view("general/head", array(), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Προσθήκη ακινήτου"), true),
+            
+            "content_view"      => $this->load->view("property/add_property", $content_data, true),
+            
+            "side_view"         => $this->load->view("general/side", array(), true),
+            "footer_view"       => $this->load->view("general/footer", array(), true),
+            "foot_view"         => $this->load->view("general/foot", array(), true)
+        );
+        
+        $this->load->view("general/main", $data);
+    }
+    
+    public function property_list() {
+        $this->load->model("Property_model");
+        
+        $content_data = array();
+        
+        $data = array(
+            "head_view"         => $this->load->view("general/head", array(), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Λίστα ακινήτων"), true),
+            
+            "content_view"      => $this->load->view("property/property_list", $content_data, true),
+            
+            "side_view"         => $this->load->view("general/side", array(), true),
+            "footer_view"       => $this->load->view("general/footer", array(), true),
+            "foot_view"         => $this->load->view("general/foot", array(), true)            
+        );
+                
+        $this->load->view("general/main", $data);
+    }
+    
     public function save_property() {
         $this->load->model("Property_model");
         
@@ -53,6 +104,14 @@ class Property extends CI_Controller {
         } else {
             echo 1;
         }
+    }
+    
+    public function get_properties_list() {
+        $this->load->model("Property_model");
+        
+        $property_list = $this->Property_model->fetch_property_list();
+        
+        echo $property_list;
     }
     
 }
