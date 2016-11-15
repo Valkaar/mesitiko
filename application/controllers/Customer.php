@@ -36,7 +36,7 @@ class Customer extends CI_Controller {
             return;
         }
         
-        $property = $this->input->post("customer");
+        $customer = $this->input->post("customer");
         
         $result = $this->Customer_model->save_customer(customer);
         

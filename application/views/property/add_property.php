@@ -119,26 +119,26 @@
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Τετραγωνικά μέτρα</strong></span>
-            <input type="text" class="form-control" id="property_sqm" placeholder="Τετραγωνικά μέτρα" style="width: 100%;" required
-                   value="<?= !empty($property_data) && isset($property_data["property_sqm"]) ? $property_data["property_sqm"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="property_sqm" placeholder="Τετραγωνικά μέτρα" style="width: 100%;" required
+                       value="<?= !empty($property_data) && isset($property_data["property_sqm"]) ? $property_data["property_sqm"] : ""; ?>">
+            </div>
         </div>
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Θέρμανση</strong></span>
-            <select class="form-control selectpicker" id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
-                <?php foreach ($heatings as $heating) { ?>
-                    <?php
-                    if (!empty($property_data) && isset($property_data["property_heating_id"]) && $property_data["property_heating_id"] == $heating["heating_id"]) {
-                        $selected = " selected";
-                    } else {
-                        $selected = "";
-                    }
-                    ?>
-                    <option value="<?= $heating["heating_id"]; ?>"<?= $selected; ?>><?= $heating["heating_label"]; ?></option>
-                <?php } ?>
-            </select>
-        </div>
+                <select class="form-control selectpicker" id="heating_id" title="Επιλέξτε τύπο θέρμανσης...">
+                    <?php foreach ($heatings as $heating) { ?>
+                        <?php
+                        if (!empty($property_data) && isset($property_data["property_heating_id"]) && $property_data["property_heating_id"] == $heating["heating_id"]) {
+                            $selected = " selected";
+                        } else {
+                            $selected = "";
+                        }
+                        ?>
+                        <option value="<?= $heating["heating_id"]; ?>"<?= $selected; ?>><?= $heating["heating_label"]; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
         </div>
     </div>
     <div class="row margin-bottom-30">
@@ -160,39 +160,39 @@
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Επίπεδα</strong></span>
-            <input type="text" class="form-control" id="property_levels" placeholder="Επίπεδα" style="width: 100%;"
-                   value="<?= !empty($property_data) && isset($property_data["property_levels"]) ? $property_data["property_levels"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="property_levels" placeholder="Επίπεδα" style="width: 100%;"
+                       value="<?= !empty($property_data) && isset($property_data["property_levels"]) ? $property_data["property_levels"] : ""; ?>">
+            </div>
         </div>
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Όροφος</strong></span>
-            <input type="text" class="form-control" id="property_floor" placeholder="Όροφος" style="width: 100%;"
-                   value="<?= !empty($property_data) && isset($property_data["property_floor"]) ? $property_data["property_floor"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="property_floor" placeholder="Όροφος" style="width: 100%;"
+                       value="<?= !empty($property_data) && isset($property_data["property_floor"]) ? $property_data["property_floor"] : ""; ?>">
+            </div>
         </div>
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Έκταση μπαλκονιού</strong></span>
-            <input type="text" class="form-control" id="balcony_sqm" placeholder="Τετραγωνικά μέτρα μπαλκονιού" style="width: 100%;"
-                   value="<?= !empty($property_data) && isset($property_data["property_balcony_sqm"]) ? $property_data["property_balcony_sqm"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="balcony_sqm" placeholder="Τετραγωνικά μέτρα μπαλκονιού" style="width: 100%;"
+                       value="<?= !empty($property_data) && isset($property_data["property_balcony_sqm"]) ? $property_data["property_balcony_sqm"] : ""; ?>">
+            </div>
         </div>
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Έκταση κήπου</strong></span>
-            <input type="text" class="form-control" id="garden_sqm" placeholder="Τετραγωνικά μέτρα κήπου" style="width: 100%;"
-                   value="<?= !empty($property_data) && isset($property_data["property_garden_sqm"]) ? $property_data["property_garden_sqm"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="garden_sqm" placeholder="Τετραγωνικά μέτρα κήπου" style="width: 100%;"
+                       value="<?= !empty($property_data) && isset($property_data["property_garden_sqm"]) ? $property_data["property_garden_sqm"] : ""; ?>">
+            </div>
         </div>
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Ετικέτα ακινήτου</strong></span>
-            <input type="text" class="form-control" id="property_label" placeholder="Ετικέτα ακινήτου" style="width: 100%;"
-                   value="<?= !empty($property_data) && isset($property_data["property_label"]) ? $property_data["property_label"] : ""; ?>">
-        </div>
+                <input type="text" class="form-control" id="property_label" placeholder="Ετικέτα ακινήτου" style="width: 100%;"
+                       value="<?= !empty($property_data) && isset($property_data["property_label"]) ? $property_data["property_label"] : ""; ?>">
+            </div>
         </div>
     </div>
     <div class="row margin-bottom-30">
@@ -204,10 +204,10 @@
                 <input type="checkbox" name="has_fireplace" id="has_fireplace" checked="false">
             </div>
             <div class="col-md-6" id="has_fireplace_input">
-            <div class="input-group" style="width: 100%;">
-                <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
-                <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="fireplace_no" id="fireplace_no">
-            </div>
+                <div class="input-group" style="width: 100%;">
+                    <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
+                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="fireplace_no" id="fireplace_no">
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -215,10 +215,10 @@
                 <input type="checkbox" name="has_aircondition" id="has_aircondition">
             </div>
             <div class="col-md-6" id="has_aircondition_input">
-            <div class="input-group" style="width: 100%;">
-                <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
-                <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="aircondition_no" id="aircondition_no">
-            </div>
+                <div class="input-group" style="width: 100%;">
+                    <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
+                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="aircondition_no" id="aircondition_no">
+                </div>
             </div>
         </div>
     </div>

@@ -55,17 +55,17 @@ class Customer_model extends CI_Model {
     public function save_customer($customer) {
         $db_handler = $this->load_db_object();
         
-        $property_insert_query = "insert into property "
+        $customer_insert_query = "insert into customer "
                 . "(customer_created_date_time, customer_user_id, customer_customer_status_id, customer_customer_type_id, "
                 . "customer_name, customer_lastname, customer_address, customer_address_no, customer_telephone, customer_mobile,"
                 . "customer_email, customer_username, customer_password "
                 . "values "
                 . "('" . date("Y-m-d H:i:s") . "', {$customer["user_id"]}, {$customer["customer_status"]}, {$customer["customer_type"]}, "
-                . " {$customer["name"]}, {$customer["lastname"]}, {$customer["address"]}, {$customer["address_no"]}, "
+                . " '{$customer["name"]}', '{$customer["lastname"]}', '{$customer["address"]}', {$customer["address_no"]}, "
                 . " {$customer["telephone"]}, {$customer["mobile"]}, '{$customer["email"]}', '{$customer["username"]}',"
-                . " {$customer["password"]}  ";
+                . " '{$customer["password"]}'  ";
                 
-        $db_handler->query($property_insert_query);
+        $db_handler->query($customer_insert_query);
     }
      
 }
