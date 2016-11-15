@@ -34,7 +34,7 @@ class User extends CI_Controller {
             return;
         }
         
-        $property = $this->input->post("user");
+        $user = $this->input->post("user");
         
         $result = $this->User_model->save_user($user);
         

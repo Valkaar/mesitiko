@@ -176,7 +176,9 @@ class Request_model extends CI_Model {
                 . "request_garden_sqm_to, request_floor, request_levels, request_fireplace, request_air_condition, "
                 . "request_pool_sqm_from, request_pool_sqm_to) "
                 . "values "
-                . "('" . date("Y-m-d H:i:s") . "', )";
+                . "('" . date("Y-m-d H:i:s") . "', {$request["sqm_from"]}, {$request["sqm_to"]}, {$request["price_from"]}, {$request["price_to"]}"
+                . " {$request["furnished"]}, {$request["balcony_sqm_from"]}, {$request["balcony_sqm_to"]}, {$request["garden_sqm_from"]}, {$request["garden_sqm_to"]},"
+                . " {$request["floor"]}, {$request["levels"]}, {$request["fireplace"]}, {$request["air_condition"]}, {$request["pool_sqm_from"]}, {$request["pool_sqm_to"]} )";
         
         $request_id = $db_handler->query($request_insert_query);
         

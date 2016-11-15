@@ -1,14 +1,14 @@
-<form class="form-inline">    
+<form class="form-inline" id="add_customer_form">    
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <select class="form-control selectpicker" id="customer_type_id" title="Επιλέξτε τύπο πελάτη...">
+            <select class="form-control selectpicker" id="customer_type" title="Επιλέξτε τύπο πελάτη...">
                 <?php foreach ($customer_types as $customer_type) { ?>
                 <option value="<?= $customer_type["customer_type_id"]; ?>"><?= $customer_type["customer_type_label"]; ?></option>
                 <?php } ?>
             </select>
         </div>
         <div class="col-md-4">
-            <select class="form-control selectpicker" id="customer_status_id" title="Επιλέξτε κατάσταση πελάτη...">
+            <select class="form-control selectpicker" id="customer_status" title="Επιλέξτε κατάσταση πελάτη...">
                 <?php foreach ($customer_statuses as $customer_status) { ?>
                 <option value="<?= $customer_status["customer_status_id"]; ?>"><?= $customer_status["customer_status_label"]; ?></option>
                 <?php } ?>
@@ -56,7 +56,14 @@
     </div>
 </form>
 <script>
+    
+    $("#add_customer_form").validate();
+    
     $("body").off("click", "#submit_customer").on("click", "#submit_customer", function() {
+        if (!$("#add_customer_form").valid()) {
+            return false;
+        }
+        
         var customer_object = {
             "customer_type":        $("#customer_type_id").val(),
             "customer_status":      $("#customer_status_id").val(),

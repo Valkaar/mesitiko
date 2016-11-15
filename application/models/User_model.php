@@ -27,8 +27,8 @@ class User_model extends CI_Model {
         $user_insert_query = "insert into user "
                 . "(user_name, user_lastname, user_username, user_password, user_email, user_isadmin, user_user_status_id "
                 . "values "
-                . " '{$user["user_name"]}', '{$user["user_lastname"]}', '{$user["user_username"]}', '{$user["user_password"]}', "
-                . " '{$user["user_email"]}', {$user["user_isadmin"]}, {$user["user_status_id"]} ";
+                . " '{$user["name"]}', '{$user["lastname"]}', '{$user["username"]}', '{$user["password"]}', "
+                . " '{$user["email"]}', {$user["isadmin"]}, {$user["status_id"]} ";
                 
         $db_handler->query($user_insert_query);
     }
