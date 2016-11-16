@@ -155,6 +155,7 @@
                 <span class="input-group-addon" style="width: 45%;"><strong>Τιμή ακινήτου</strong></span>
                 <input type="text" class="form-control" id="property_price" placeholder="Τιμή" style="width: 100%;"
                        value="<?= !empty($property_data) && isset($property_data["property_price"]) ? $property_data["property_price"] : ""; ?>">
+                <span class="input-group-addon glyphicon glyphicon-euro"></span>
             </div>
         </div>
         <div class="col-md-4">
@@ -206,7 +207,8 @@
             <div class="col-md-6" id="has_fireplace_input">
                 <div class="input-group" style="width: 100%;">
                     <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
-                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="fireplace_no" id="fireplace_no">
+                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="fireplace_no" id="fireplace_no"
+                       value="<?= !empty($property_data) && isset($property_data["property_label"]) ? $property_data["property_fireplace"] : ""; ?>">
                 </div>
             </div>
         </div>
@@ -217,7 +219,8 @@
             <div class="col-md-6" id="has_aircondition_input">
                 <div class="input-group" style="width: 100%;">
                     <span class="input-group-addon" style="width: 45%;"><strong>Αριθμός</strong></span>
-                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="aircondition_no" id="aircondition_no">
+                    <input type="text" class="form-control" style="width:100%;" placeholder="Αριθμός" name="aircondition_no" id="aircondition_no"
+                       value="<?= !empty($property_data) && isset($property_data["property_label"]) ? $property_data["propery_air_condition"] : ""; ?>">
                 </div>
             </div>
         </div>
@@ -227,6 +230,8 @@
             <button type="button" class="btn btn-primary pull-right" id="submit_property">Αποθήκευση</button>
         </div>
     </div>
+    <input type="hidden" id="is_edit" value="<?= !empty($property_data) ? 1 : 0; ?>">
+    <input type="hidden" id="property_id" value="<?= !empty($property_data) ? $property_data["property_id"] : 0; ?>">
 </form>
 <script>
     $("#add_property_form").validate();
@@ -269,23 +274,31 @@
             "transaction_type": $("#transaction_type_id").val(),
             "property_type": $("#property_type_id").val(),
             "property_status": $("#property_status_id").val(),
-            "prefecture": $("#property_prefecture_id").val(),
-            "municipality": $("#property_municipallity_id").val(),
-            "area": $("#property_area_id").val(),
-            "address": $("#property_address").val(),
-            "address_no": $("#property_address_no").val(),
+            "property_prefecture": $("#prefecture_id").val(),
+            "property_municipality": $("#municipality_id").val(),
+            "property_area": $("#area_id").val(),
+            "property_address": $("#address").val(),
+            "property_address_no": $("#address_no").val(),
             "property_sqm": $("#property_sqm").val(),
-            "heating_id": $("#property_heating_id").val(),
+            "heating_id": $("#heating_id").val(),
             "property_price": $("#property_price").val(),
             "property_levels": $("#property_levels").val(),
             "property_floor": $("#property_floor").val(),
-            "balcony_sqm": $("#property_balcony_sqm").val(),
-            "garden_sqm": $("#property_garden_sqm").val(),
+            "property_balcony_sqm": $("#balcony_sqm").val(),
+            "property_garden_sqm": $("#garden_sqm").val(),
             "property_description": $("#property_description").val(),
-            "is_furnished": $('#is_furnished').bootstrapSwitch('state'),
+            "property_description_en": $("#property_description_en").val(),
+            "property_label": $("#property_label").val(),
+            
+            "property_furnished": $('#is_furnished').bootstrapSwitch('state'),
             "has_fireplace": $('#has_fireplace').bootstrapSwitch('state'),
-            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
-        }
+            "property_fireplace": $("#fireplace_no").val(),
+            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state'),
+            "propery_air_condition": $("#aircondition_no").val(),
+            
+            "is_edit": $("#is_edit").val(),
+            "property_id": $("#property_id").val(),
+        };
 
         $.ajax({
             type: "post",
@@ -293,10 +306,14 @@
             data: {
                 "property": property_object
             }
-        }).done(function (data) {
-            console.log(data);
-        }).error(function (err) {
-            console.log(err);
+        }).done(function(data) {
+            if ($("#is_edit").val() == 0) {
+                $("#is_edit").val(1);
+                $("#property_id").val(data);                
+                window.location.href = "/property/edit_property/" + data;
+            } else {
+                window.location.href = "/property/edit_property/" + $("#property_id").val();                
+            }
         });
     });
 </script>

@@ -53,7 +53,7 @@ class Property extends CI_Controller {
         
         $data = array(
             "head_view"         => $this->load->view("general/head", array(), true),
-            "header_view"       => $this->load->view("general/header", array("header_title" => "Προσθήκη ακινήτου"), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Επεξεργασία ακινήτου"), true),
             
             "content_view"      => $this->load->view("property/add_property", $content_data, true),
             
@@ -95,14 +95,18 @@ class Property extends CI_Controller {
         
         $property = $this->input->post("property");
         
-        $result = $this->Property_model->save_property($property);
+        if (empty($property["is_edit"])) {
+            $result = $this->Property_model->save_property($property);            
+        } else {
+            $result = $this->Property_model->update_property($property);
+        }
         
         if (empty($result)) {
             echo 10000010;
         } else if ($result === -1) {
             echo 10000011;
         } else {
-            echo 1;
+            echo $result;
         }
     }
     
