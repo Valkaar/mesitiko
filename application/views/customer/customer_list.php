@@ -37,7 +37,7 @@
             "rowCallback": function(row, data, index) {
                 var action_html = "<a class='btn btn-success edit-button' href='/customer/edit_customer/" + data.customer_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
                                     + "<button class='btn btn-danger delete-button' type='submit' rel='" + data.customer_id + "'><span class='glyphicon glyphicon-remove' title='Διαγραφή'></span></button>";
-                $('td:eq(0)', row).html('<input type="checkbox" id="property_' + data.customer_id + '">');
+                $('td:eq(0)', row).html('<input type="checkbox" id="customer_' + data.customer_id + '">');
                 $("td:eq(10)", row).html(action_html);
             }
         })

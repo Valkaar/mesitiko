@@ -1,29 +1,56 @@
 <form class="form-inline" id="add_user_form">    
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <input type="text" class="form-control" id="username" placeholder="Όνομα χρήστη" required style="width: 100%;">
+            <div class="input-group" style="width: 100%;">
+                <span class="input-group-addon" style="width: 20%;"><strong>Όνομα χρήστη</strong></span>
+            <input type="text" class="form-control" id="username" placeholder="Όνομα χρήστη" required style="width: 100%;"
+                       value="<?= !empty($user_data) && isset($user_data["user_username"]) ? $user_data["user_username"] : ""; ?>">
+        </div>
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="password" placeholder="Κωδικός πρόσβασης" required style="width: 100%;">
+            <div class="input-group" style="width: 100%;">
+                <span class="input-group-addon" style="width: 20%;"><strong>Κωδικός</strong></span>
+                <input type="password" class="form-control" id="password" placeholder="Κωδικός πρόσβασης" required style="width: 100%;"
+                       value="<?= !empty($user_data) && isset($user_data["user_password"]) ? $user_data["user_name"] : ""; ?>">
+                <span class="input-group-addon"></span>
+                <input type="password" class="form-control" id="confirm_password" required placeholder="Επιβεβαίωση" value="">
+            </div>
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="email" placeholder="Email" required style="width: 100%;">
+            <div class="input-group" style="width: 100%;">
+                <span class="input-group-addon" style="width: 20%;"><strong>E-mail</strong></span>
+            <input type="text" class="form-control" id="email" placeholder="Email" required style="width: 100%;"
+                       value="<?= !empty($user_data) && isset($user_data["user_email"]) ? $user_data["user_email"] : ""; ?>">
+        </div>
         </div>
     </div>
     <div class="row margin-bottom-30">
         <div class="col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control" id="name" required placeholder="Όνομα">
+            <div class="input-group" style="width: 100%;">
+                <span class="input-group-addon" style="width: 20%;"><strong>Ονοματεπώνυμο</strong></span>
+                <input type="text" class="form-control" id="name" required placeholder="Όνομα"
+                       value="<?= !empty($user_data) && isset($user_data["user_name"]) ? $user_data["user_name"] : ""; ?>">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control" id="lastname" required placeholder="Επίθετο">
+                <input type="text" class="form-control" id="lastname" required placeholder="Επίθετο"
+                       value="<?= !empty($user_data) && isset($user_data["user_lastname"]) ? $user_data["user_lastname"] : ""; ?>">
             </div>
         </div>
         <div class="col-md-4">
+            <div class="input-group" style="width: 100%;">
+                <span class="input-group-addon" style="width: 20%;"><strong>Κατάσταση χρήστη</strong></span>
             <select class="form-control selectpicker" id="status" required title="Κατάσταση χρήστη">
                 <?php foreach ($user_statuses as $user_status) { ?>
-                <option value="<?= $user_status["user_status_id"]; ?>"><?= $user_status["user_status_label"]; ?></option>
+                        <?php
+                        if (!empty($user_data) && isset($user_data["user_user_status_id"]) && $user_data["user_user_status_id"] == $user_status["user_status_id"]) {
+                            $selected = " selected";
+                        } else {
+                            $selected = "";
+                        }
+                        ?>
+                    <option value="<?= $user_status["user_status_id"]; ?>"<?= $selected; ?>><?= $user_status["user_status_label"]; ?></option>
                 <?php } ?>
             </select>
+        </div>
         </div>
         <div class="col-md-4">
             <input type="checkbox" name="is_admin" id="is_admin">
@@ -34,44 +61,49 @@
             <button type="button" class="btn btn-primary pull-right" id="submit_user" required>Αποθήκευση</button>
         </div>
     </div>
+    <input type="hidden" id="is_edit" value="<?= !empty($user_data) ? 1 : 0; ?>">
+    <input type="hidden" id="user_id" value="<?= !empty($user_data) ? $user_data["user_id"] : 0; ?>">
 </form>
 <script>
-    
+
     $("#add_user_form").validate();
-    
+
     $("#is_admin").bootstrapSwitch({
         "onText": "Διαχειριστής",
         "offText": "Απλός χρήστης",
         "state": true
     });
-    
-    $("body").off("click", "#submit_user").on("click", "#submit_user", function() {
+
+    $("body").off("click", "#submit_user").on("click", "#submit_user", function () {
         if (!$("#add_user_form").valid()) {
             return false;
         }
-        
-        var user_object = {
-            
-            "username":     $("#username").val(),
-            "password":     $("#password").val(),
-            "email":        $("#email").val(),
-            "name":         $("#name").val(),
-            "lastname":     $("#lastname").val(),
-            "status":       $("#status").val(),
-            
-            "is_admin":     $('#is_admin').bootstrapSwitch('state')
-        }
 
-        console.log(user_object);
+        var user_object = {
+            "name": $("#name").val(),
+            "lastname": $("#lastname").val(),
+            "username": $("#username").val(),
+            "password": $("#password").val(),
+            "email": $("#email").val(),
+            "status": $("#status").val(),
+            
+            "is_admin": $('#is_admin').bootstrapSwitch('state')
+        }
         
         $.ajax({
-            type:   "post",
-            url:    "/user/save_user",
-            data:   {
+            type: "post",
+            url: "/user/save_user",
+            data: {
                 "user": user_object
             }
-        }).done(function(data) {
-            console.log(data);
+        }).done(function (data) {
+            if ($("#is_edit").val() == 0) {
+                $("#is_edit").val(1);
+                $("#user_id").val(data);                
+                window.location.href = "/user/edit_user/" + data;
+            } else {
+                window.location.href = "/user/edit_user/" + $("#user_id").val();                
+            }
         });
     });
 </script>

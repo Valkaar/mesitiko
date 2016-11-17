@@ -5,9 +5,10 @@ class Customer extends CI_Controller {
     
     public function add_customer() {
         $this->load->model("Customer_model");
+        $this->load->model("User_model");
         
         $content_data = array(
-            "user_ids"                => $this->Customer_model->get_user_ids(),
+            "user_ids"                => $this->User_model->get_user_ids(),
             "customer_statuses"       => $this->Customer_model->get_customer_statuses(),
             "customer_types"          => $this->Customer_model->get_customer_types()                 
         );
@@ -29,9 +30,10 @@ class Customer extends CI_Controller {
     
     public function edit_customer($customer_id) {
         $this->load->model("Customer_model");
+        $this->load->model("User_model");
         
         $content_data = array(
-            "user_ids"          => $this->Customer_model->get_user_ids(),
+            "user_ids"          => $this->User_model->get_user_ids(),
             "customer_statuses" => $this->Customer_model->get_customer_statuses(),
             "customer_types"    => $this->Customer_model->get_customer_types(),
             

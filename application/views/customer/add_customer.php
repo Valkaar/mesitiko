@@ -102,8 +102,7 @@
         <div class="col-md-4">
             <div class="input-group" style="width: 100%;">
                 <span class="input-group-addon" style="width: 45%;"><strong>Επιβεβαίωση</strong></span>
-                <input type="password" class="form-control" id="customer_password_repeat" placeholder="Επιβεβαίωση κωδικού" style="width: 100%;"
-                       value="<?= !empty($customer_data) && isset($customer_data["customer_password"]) ? $customer_data["customer_password"] : ""; ?>">
+                <input type="password" class="form-control" id="customer_password_repeat" placeholder="Επιβεβαίωση κωδικού" style="width: 100%;" value="">
             </div>
         </div>
     </div>

@@ -154,6 +154,7 @@ class Property_model extends CI_Model {
             "property_sqm" => $property["property_sqm"],
             "property_price" => $property["property_price"],
             "property_description" => $property["property_description"],
+            "property_description_en" => $property["property_description_en"],
             "property_label" => $property["property_label"],
             "property_address" => $property["property_address"],
             "property_address_no" => $property["property_address_no"],
@@ -191,6 +192,7 @@ class Property_model extends CI_Model {
             "property_sqm" => $property["property_sqm"],
             "property_price" => $property["property_price"],
             "property_description" => $property["property_description"],
+            "property_description_en" => $property["property_description_en"],
             "property_label" => $property["property_label"],
             "property_address" => $property["property_address"],
             "property_address_no" => $property["property_address_no"],
@@ -250,6 +252,7 @@ class Property_model extends CI_Model {
                     . "p.property_sqm, "
                     . "p.property_price, "
                     . "p.property_description, "
+                    . "p.property_description_en, "
                     . "p.property_label, "
                     . "p.property_address, "
                     . "p.property_address_no, "
