@@ -168,26 +168,276 @@ class Request_model extends CI_Model {
     public function save_request($request) {
         $db_handler = $this->load_db_object();
         
-        var_dump($request);
+        $data = array(
+            "request_created_date_time" => date("Y-m-d H:i:s"),
+            "request_transaction_type_id" => $request["transaction_type"],
+            "request_user_id" => 1,
+            "request_customer_id" => 1,
+            "request_sqm_from" => $request["sqm_from"],
+            "request_sqm_to" => $request["sqm_to"],
+            "request_price_from" => $request["price_from"],
+            "request_price_to" => $request["price_to"],
+            "request_furnished" => ($request["is_furnished"] === "true" ? 1 : 0),
+            "request_balcony_sqm_from" => $request["balcony_sqm_from"],
+            "request_balcony_sqm_to" => $request["balcony_sqm_to"],
+            "request_garden_sqm_from" => $request["garden_sqm_from"],
+            "request_garden_sqm_to" => $request["garden_sqm_to"],
+            "request_floor" => $request["property_floor"],
+            "request_levels" => $request["property_levels"],
+            "request_fireplace" => $request["fireplace_no"],
+            "request_air_condition" => $request["aircondition_no"],
+            "request_pool_sqm_from" => $request["pool_sqm_from"],
+            "request_pool_sqm_to" => $request["pool_sqm_to"]
+        );
         
-        $request_insert_query = "insert into request "
-                . "(request_created_date_time, request_sqm_from, request_sqm_to, request_price_from, "
-                . "request_price_to, request_furnished, request_balcony_sqm_from, request_balcony_sqm_to, request_garden_sqm_from, "
-                . "request_garden_sqm_to, request_floor, request_levels, request_fireplace, request_air_condition, "
-                . "request_pool_sqm_from, request_pool_sqm_to) "
-                . "values "
-                . "('" . date("Y-m-d H:i:s") . "', {$request["sqm_from"]}, {$request["sqm_to"]}, {$request["price_from"]}, {$request["price_to"]}"
-                . " {$request["furnished"]}, {$request["balcony_sqm_from"]}, {$request["balcony_sqm_to"]}, {$request["garden_sqm_from"]}, {$request["garden_sqm_to"]},"
-                . " {$request["floor"]}, {$request["levels"]}, {$request["fireplace"]}, {$request["air_condition"]}, {$request["pool_sqm_from"]}, {$request["pool_sqm_to"]} )";
+        $db_handler->insert("request", $data);
         
-        $request_id = $db_handler->query($request_insert_query);
+        $request_id = $db_handler->insert_id();
+        
+        $this->refresh_request_aux_data($request_id, $request);
+        
+        return $request_id;
+    }
+    
+    public function update_request($request) {
+        $db_handler = $this->load_db_object();
+        
+        $data = array(
+            "request_updated_date_time" => date("Y-m-d H:i:s"),
+            "request_transaction_type_id" => $request["transaction_type"],
+            "request_user_id" => 1,
+            "request_customer_id" => 1,
+            "request_sqm_from" => $request["sqm_from"],
+            "request_sqm_to" => $request["sqm_to"],
+            "request_price_from" => $request["price_from"],
+            "request_price_to" => $request["price_to"],
+            "request_furnished" => ($request["is_furnished"] === "true" ? 1 : 0),
+            "request_balcony_sqm_from" => $request["balcony_sqm_from"],
+            "request_balcony_sqm_to" => $request["balcony_sqm_to"],
+            "request_garden_sqm_from" => $request["garden_sqm_from"],
+            "request_garden_sqm_to" => $request["garden_sqm_to"],
+            "request_floor" => $request["property_floor"],
+            "request_levels" => $request["property_levels"],
+            "request_fireplace" => $request["fireplace_no"],
+            "request_air_condition" => $request["aircondition_no"],
+            "request_pool_sqm_from" => $request["pool_sqm_from"],
+            "request_pool_sqm_to" => $request["pool_sqm_to"]
+        );
+                
+        $db_handler->where('request_id', $request["request_id"]);
+        $db_handler->update('request', $data); 
+        
+        return $request["request_id"];
+    }
+    
+    public function refresh_request_aux_data($request_id, $request) {
+        $db_handler = $this->load_db_object();
+        
+        $db_handler->delete('request_type', array('request_type_request_id' => $request_id)); 
+        $db_handler->delete('request_status', array('request_status_request_id' => $request_id)); 
+        $db_handler->delete('request_prefecture', array('request_prefecture_request_id' => $request_id)); 
+        $db_handler->delete('request_municipality', array('request_municipality_request_id' => $request_id)); 
+        $db_handler->delete('request_area', array('request_area_request_id' => $request_id)); 
+        $db_handler->delete('request_heating', array('request_heating_request_id' => $request_id)); 
+        
+        $property_type_data = array();
+        $property_status_data = array();
+        $prefecture_data = array();
+        $municipality_data = array();
+        $area_data = array();
+        $heating_data = array();
         
         foreach ($request["property_type"] as $property_type) {
-            $property_type_insert_query = "insert into request_type "
-                    . "(request_type_request_id, request_type_property_type_id) "
-                    . "values "
-                    . "({$request_id}, {$property_type}) ";
+            $property_type_data[] = array(
+                "request_type_request_id" => $request_id,
+                "request_type_property_type_id" => $property_type
+            );
         }
+        
+        foreach ($request["property_status"] as $property_status) {
+            $property_status_data[] = array(
+                "request_status_request_id" => $request_id,
+                "request_status_status_id" => $property_status
+            );
+        }
+        
+        foreach ($request["prefecture_id"] as $prefecture) {
+            $prefecture_data[] = array(
+                "request_prefecture_request_id" => $request_id,
+                "request_prefecture_prefecture_id" => $prefecture
+            );
+        }
+        
+        foreach ($request["municipality_id"] as $municipality) {
+            $municipality_data[] = array(
+                "request_municipality_request_id" => $request_id,
+                "request_municipality_municipality_id" => $municipality
+            );
+        }
+        
+        foreach ($request["area_id"] as $area) {
+            $area_data[] = array(
+                "request_area_request_id" => $request_id,
+                "request_area_area_id" => $area
+            );
+        }
+        
+        foreach ($request["heating"] as $heating) {
+            $heating_data[] = array(
+                "request_heating_request_id" => $request_id,
+                "request_heating_heating_id" => $heating
+            );
+        }
+        
+        $db_handler->insert_batch("request_type", $property_type_data);
+        $db_handler->insert_batch("request_status", $property_status_data);
+        $db_handler->insert_batch("request_prefecture", $prefecture_data);
+        $db_handler->insert_batch("request_municipality", $municipality_data);
+        $db_handler->insert_batch("request_area", $area_data);
+        $db_handler->insert_batch("request_heating", $heating_data);
+    }
+    
+    public function get_request_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $request_query = "select "
+                    . "request_id, "
+                    . "request_transaction_type_id, "
+                    . "request_sqm_from, "
+                    . "request_sqm_to, "
+                    . "request_price_from, "
+                    . "request_price_to, "
+                    . "request_furnished, "
+                    . "request_balcony_sqm_from, "
+                    . "request_balcony_sqm_to, "
+                    . "request_garden_sqm_from, "
+                    . "request_garden_sqm_to, "
+                    . "request_floor, "
+                    . "request_levels, "
+                    . "request_fireplace, "
+                    . "request_air_condition, "
+                    . "request_pool_sqm_from, "
+                    . "request_pool_sqm_to "
+                . "from request "
+                . "where request_id = {$request_id} ";
+                
+        $request_result = $db_handler->query($request_query)->row_array();
+        
+        return $request_result;
+    }
+    
+    public function get_request_type_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_type_property_type_id "
+                . "from request_type "
+                . "where request_type_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_type_property_type_id"];
+        }
+        
+        return $result_array;
+    }
+    
+    public function get_request_status_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_status_status_id "
+                . "from request_status "
+                . "where request_status_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_status_status_id"];
+        }
+        
+        return $result_array;
+    }
+    
+    public function get_request_prefecture_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_prefecture_prefecture_id "
+                . "from request_prefecture "
+                . "where request_prefecture_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_prefecture_prefecture_id"];
+        }
+        
+        return $result_array;
+    }
+    
+    public function get_request_municipality_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_municipality_municipality_id "
+                . "from request_municipality "
+                . "where request_municipality_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_municipality_municipality_id"];
+        }
+        
+        return $result_array;
+    }
+    
+    public function get_request_area_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_area_area_id "
+                . "from request_area "
+                . "where request_area_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_area_area_id"];
+        }
+        
+        return $result_array;
+    }
+    
+    public function get_request_heating_data($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                    . "request_heating_heating_id "
+                . "from request_heating "
+                . "where request_heating_request_id = {$request_id} ";
+                
+        $result = $db_handler->query($query)->result_array();
+        
+        $result_array = array();
+        
+        foreach ($result as $row) {
+            $result_array[] = $row["request_heating_heating_id"];
+        }
+        
+        return $result_array;
     }
      
 }
