@@ -227,6 +227,8 @@ class Request_model extends CI_Model {
         $db_handler->where('request_id', $request["request_id"]);
         $db_handler->update('request', $data); 
         
+        $this->refresh_request_aux_data($request["request_id"], $request);
+        
         return $request["request_id"];
     }
     
@@ -438,6 +440,27 @@ class Request_model extends CI_Model {
         }
         
         return $result_array;
+    }
+    
+    public function fetch_request_list() {
+        $db_handler = $this->load_db_object();
+        
+        $query = "select "
+                        . "'' as 'request_checked', "
+                        . "r.request_id as 'request_id', "
+                        . "r.request_created_date_time as 'request_created', "
+                        . "tt.transaction_type_label as 'transaction_type', "
+                        . "concat(c.customer_name,' ',c.customer_lastname) as 'customer_name', "
+                        . "concat(r.request_sqm_from,' - ',r.request_sqm_to) as 'request_sqm_range', "
+                        . "concat(r.request_price_from,' - ',r.request_price_to) as 'request_price_range', "
+                        . "'' as 'request_actions' "
+                    . "from request r  "
+                        . "join transaction_type tt on r.request_transaction_type_id = tt.transaction_type_id  "
+                        . "join customer c on r.request_customer_id = c.customer_id";
+        
+        $request_result = $db_handler->query($query)->result_array();
+        
+        return json_encode(array("data" => $request_result));
     }
      
 }

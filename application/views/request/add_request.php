@@ -294,7 +294,10 @@
             "aircondition_no": $("#aircondition_no").val(),
             "is_furnished": $('#is_furnished').bootstrapSwitch('state'),
             "has_fireplace": $('#has_fireplace').bootstrapSwitch('state'),
-            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state')
+            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state'),
+            
+            "is_edit": $("#is_edit").val(),
+            "request_id": $("#request_id").val(),
         }
 
         $.ajax({
@@ -304,7 +307,13 @@
                 "request": request_object
             }
         }).done(function (data) {
-            console.log(data);
+            if ($("#is_edit").val() == 0) {
+                $("#is_edit").val(1);
+                $("#request_id").val(data);                
+                window.location.href = "/request/edit_request/" + data;
+            } else {
+                window.location.href = "/request/edit_request/" + $("#request_id").val();                
+            }
         });
 
 

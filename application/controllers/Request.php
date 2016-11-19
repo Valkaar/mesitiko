@@ -58,7 +58,7 @@ class Request extends CI_Controller {
         
         $data = array(
             "head_view"         => $this->load->view("general/head", array(), true),
-            "header_view"       => $this->load->view("general/header", array("header_title" => "Προσθήκη ζήτησης"), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Επεξεργασία ζήτησης"), true),
             
             "content_view"      => $this->load->view("request/add_request", $content_data, true),
             
@@ -67,6 +67,25 @@ class Request extends CI_Controller {
             "foot_view"         => $this->load->view("general/foot", array(), true)
         );
         
+        $this->load->view("general/main", $data);
+    }
+    
+    public function request_list() {
+        $this->load->model("Request_model");
+        
+        $content_data = array();
+        
+        $data = array(
+            "head_view"         => $this->load->view("general/head", array(), true),
+            "header_view"       => $this->load->view("general/header", array("header_title" => "Λίστα ζητήσεων"), true),
+            
+            "content_view"      => $this->load->view("request/request_list", $content_data, true),
+            
+            "side_view"         => $this->load->view("general/side", array(), true),
+            "footer_view"       => $this->load->view("general/footer", array(), true),
+            "foot_view"         => $this->load->view("general/foot", array(), true)            
+        );
+                
         $this->load->view("general/main", $data);
     }
     
@@ -81,7 +100,11 @@ class Request extends CI_Controller {
         
         $request = $this->input->post("request");
         
-        $result = $this->Request_model->save_request($request);
+        if (empty($request["is_edit"])) {
+            $result = $this->Request_model->save_request($request);            
+        } else {
+            $result = $this->Request_model->update_request($request);
+        }
         
         if (empty($result)) {
             echo 10000010;
@@ -92,5 +115,12 @@ class Request extends CI_Controller {
         }
     }
     
+    public function get_requests_list() {
+        $this->load->model("Request_model");
+        
+        $request_list = $this->Request_model->fetch_request_list();
+        
+        echo $request_list;
+    }
     
 }
