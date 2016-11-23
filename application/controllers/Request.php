@@ -123,4 +123,14 @@ class Request extends CI_Controller {
         echo $request_list;
     }
     
+    public function get_matching_properties() {
+        $this->load->model("Request_model");
+        
+        $request_id = $this->input->post("request_id");
+        
+        $matching_properties = $this->Request_model->fetch_matching_properties($request_id);
+        
+        var_dump($matching_properties);
+    }
+    
 }

@@ -40,4 +40,16 @@
             }
         })
     });
+    
+    $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
+        $.ajax({
+            type: "post",
+            url: "/property/delete_property",
+            data: {
+                property_id: $(this).attr("rel")
+            }
+        }).done(function(data) {
+            window.location.href = "/property/property_list";
+        });
+    });
 </script>

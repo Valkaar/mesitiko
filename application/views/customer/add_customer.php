@@ -107,8 +107,20 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-12">
-            <button type="button" class="btn btn-primary pull-right" id="submit_customer">Αποθήκευση</button>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-warning pull-left" id="back_to_list">Επιστροφή στη λίστα</button>                        
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger pull-left" id="clear_form">Καθαρισμός φόρμας</button>                        
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info pull-left" id="submit_customer_remain">Αποθήκευση και παραμονή</button>            
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success pull-right" id="submit_customer_clear">Αποθήκευση και καθαρισμός</button>            
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary pull-right" id="submit_customer">Αποθήκευση και επιστροφή</button>            
         </div>
     </div>
     <input type="hidden" id="is_edit" value="<?= !empty($customer_data) ? 1 : 0; ?>">
@@ -117,8 +129,17 @@
 <script>
 
     $("#add_customer_form").validate();
+    
+    $("body").off("click", "#back_to_list").on("click", "#back_to_list", function() {
+        window.location.href = "/customer/customer_list";
+    });
+    $("body").off("click", "#clear_form").on("click", "#clear_form", function() {
+        window.location.href = "/customer/add_customer";
+    });
 
-    $("body").off("click", "#submit_customer").on("click", "#submit_customer", function () {
+    $("body").off("click", "#submit_customer, #submit_customer_clear, #submit_customer_remain").on("click", "#submit_customer, submit_customer_clear, #submit_customer_remain", function () {
+        var that = this;
+        
         if (!$("#add_customer_form").valid()) {
             return false;
         }
@@ -149,10 +170,15 @@
         }).done(function (data) {
             if ($("#is_edit").val() == 0) {
                 $("#is_edit").val(1);
-                $("#customer_id").val(data);                
+                $("#customer_id").val(data);
+            }
+            
+            if ($(that).attr("id") === "submit_customer_remain") {
                 window.location.href = "/customer/edit_customer/" + data;
-            } else {
-                window.location.href = "/customer/edit_customer/" + $("#customer_id").val();                
+            } else if ($(that).attr("id") === "submit_customer_clear") {
+                window.location.href = "/customer/add_customer";
+            } else if ($(that).attr("id") === "submit_customer") {
+                window.location.href = "/customer/customer_list";                
             }
         });
 

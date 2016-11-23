@@ -272,4 +272,28 @@ class Property_model extends CI_Model {
         return $result;
     }
       
+    public function save_file_in_db($property_id, $file_name) {
+        $db_handler = $this->load_db_object();
+        
+        $insert_query = "insert into property_media "
+                . "(property_media_property_media_type_id, property_media_property_id, property_media_filename, "
+                . "property_media_path, property_media_extension, property_media_md5) "
+                . "values "
+                . "(1, {$property_id}, '{$file_name}', '{assets/uploaded_files/{$property_id}/}', "
+                . "'', '" . md5($file_name) . "') ";
+        $data = array(
+            "property_media_property_media_type_id" => 1,
+            "property_media_property_id" => $property_id,
+            "property_media_filename" => $file_name,
+            "property_media_path" => "assets/uploaded_files/{$property_id}/",
+            "property_media_extension" => "",
+            "property_media_md5" => md5($file_name)
+        );
+                
+        $db_handler->insert("property", $data);
+    }
+    
+    
+
+    
 }

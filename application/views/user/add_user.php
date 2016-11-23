@@ -57,8 +57,20 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-12">
-            <button type="button" class="btn btn-primary pull-right" id="submit_user" required>Αποθήκευση</button>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-warning pull-left" id="back_to_list">Επιστροφή στη λίστα</button>                        
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger pull-left" id="clear_form">Καθαρισμός φόρμας</button>                        
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info pull-left" id="submit_customer_remain">Αποθήκευση και παραμονή</button>            
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success pull-right" id="submit_customer_clear">Αποθήκευση και καθαρισμός</button>            
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary pull-right" id="submit_customer">Αποθήκευση και επιστροφή</button>            
         </div>
     </div>
     <input type="hidden" id="is_edit" value="<?= !empty($user_data) ? 1 : 0; ?>">
@@ -68,6 +80,13 @@
 
     $("#add_user_form").validate();
 
+    $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
+        window.location.href = "/user/user_list";
+    });
+    $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
+        window.location.href = "/user/add_user";
+    });
+
     $("#is_admin").bootstrapSwitch({
         "onText": "Διαχειριστής",
         "offText": "Απλός χρήστης",
@@ -75,6 +94,8 @@
     });
 
     $("body").off("click", "#submit_user").on("click", "#submit_user", function () {
+        var that = this;
+        
         if (!$("#add_user_form").valid()) {
             return false;
         }
@@ -100,9 +121,14 @@
             if ($("#is_edit").val() == 0) {
                 $("#is_edit").val(1);
                 $("#user_id").val(data);                
+            }
+            
+            if ($(that).attr("id") === "submit_user_remain") {
                 window.location.href = "/user/edit_user/" + data;
-            } else {
-                window.location.href = "/user/edit_user/" + $("#user_id").val();                
+            } else if ($(that).attr("id") === "submit_user_clear") {
+                window.location.href = "/user/add_user";
+            } else if ($(that).attr("id") === "submit_user") {
+                window.location.href = "/user/user_list";                
             }
         });
     });

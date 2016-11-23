@@ -40,6 +40,18 @@
                 $('td:eq(0)', row).html('<input type="checkbox" id="customer_' + data.customer_id + '">');
                 $("td:eq(10)", row).html(action_html);
             }
-        })
+        });
+    });
+    
+    $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
+        $.ajax({
+            type: "post",
+            url: "/customer/delete_customer",
+            data: {
+                customer_id: $(this).attr("rel")
+            }
+        }).done(function(data) {
+            window.location.href = "/customer/customer_list";
+        });
     });
 </script>

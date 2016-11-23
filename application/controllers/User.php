@@ -101,4 +101,10 @@ class User extends CI_Controller {
         
         echo $user_list;
     }
+    
+    public function delete_user() {
+        $this->load->library("Common");
+        
+        $this->common->delete_item("user", $this->input->post("user_id"));
+    }
 }

@@ -105,5 +105,11 @@ class Customer extends CI_Controller {
         
         echo $customer_list;
     }
+    
+    public function delete_customer() {
+        $this->load->library("Common");
+        
+        $this->common->delete_item("customer", $this->input->post("customer_id"));
+    }
  
 }

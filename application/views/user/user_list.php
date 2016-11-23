@@ -36,4 +36,16 @@
             }
         })
     });
+    
+    $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
+        $.ajax({
+            type: "post",
+            url: "/user/delete_user",
+            data: {
+                user_id: $(this).attr("rel")
+            }
+        }).done(function(data) {
+            window.location.href = "/user/user_list";
+        });
+    });
 </script>

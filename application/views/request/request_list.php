@@ -30,10 +30,22 @@
             ],
             "rowCallback": function(row, data, index) {
                 var action_html = "<a class='btn btn-success edit-button' href='/request/edit_request/" + data.request_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
-                                    + "<button class='btn btn-danger delete-button' type='submit' rel='" + data.request_id + "'><span class='glyphicon glyphicon-remove' title='Διαγραφή'></span></button>";
+                                    + "<button class='btn btn-warning request-list-button' type='submit' rel='" + data.request_id + "'><span class='glyphicon glyphicon-home' title='Ακίνητα'></span></button>";
                 $('td:eq(0)', row).html('<input type="checkbox" id="request_' + data.request_id + '">');
                 $("td:eq(7)", row).html(action_html);
             }
         })
+    });
+    
+    $("body").off("click", ".request-list-button").on("click", ".request-list-button", function() {
+        $.ajax({
+            type: "post",
+            url: "/request/get_matching_properties",
+            data: {
+                request_id: $(this).attr("rel")
+            }
+        }).done(function(data) {
+            console.log(data);
+        });
     });
 </script>

@@ -106,7 +106,7 @@ class Customer_model extends CI_Model {
                         . "'' as 'customer_actions' "
                     . "from customer c "
                         . "join customer_type ct on c.customer_customer_type_id = ct.customer_type_id "
-                        . "join customer_status cs on c.customer_customer_status_id = cs.customer_status_id";
+                        . "join customer_status cs on c.customer_customer_status_id = cs.customer_status_id ";
         
         $customer_result = $db_handler->query($customer_query)->result_array();
         

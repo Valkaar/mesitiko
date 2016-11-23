@@ -462,5 +462,118 @@ class Request_model extends CI_Model {
         
         return json_encode(array("data" => $request_result));
     }
+    
+    public function fetch_matching_properties($request_id) {
+        $db_handler = $this->load_db_object();
+        
+        $request_query = "select "
+                                . "request_transaction_type_id, "
+                                . "request_sqm_from, "
+                                . "request_sqm_to, "
+                                . "request_price_from, "
+                                . "request_price_to, "
+                                . "request_furnished, "
+                                . "request_balcony_sqm_from, "
+                                . "request_balcony_sqm_to, "
+                                . "request_garden_sqm_from, "
+                                . "request_garden_sqm_to, "
+                                . "request_floor, "
+                                . "request_levels, "
+                                . "request_fireplace, "
+                                . "request_air_condition, "
+                                . "request_pool_sqm_from, "
+                                . "request_pool_sqm_to "
+                            . "from request "
+                            . "where request_id = {$request_id} ";
+                            
+        $request_result = $db_handler->query($request_query)->row_array();
+        
+        $property_query = "select "
+                                . "*  "
+                            . "from property "
+                            . "where property_transaction_type_id = {$request_result["request_transaction_type_id"]} ";
+                            
+        if (!empty($request_result["request_sqm_from"])) {
+            $property_query .= "and property_sqm >= {$request_result["request_sqm_from"]} ";
+        }
+        if (!empty($request_result["request_sqm_to"])) {
+            $property_query .= "and property_sqm <= {$request_result["request_sqm_to"]} ";
+        }
+        
+        if (!empty($request_result["request_price_from"])) {
+            $property_query .= "and property_price >= {$request_result["request_price_from"]} ";
+        }
+        if (!empty($request_result["request_price_to"])) {
+            $property_query .= "and property_price <= {$request_result["request_price_to"]} ";
+        }
+        
+        if (!empty($request_result["property_furnished"])) {
+            $property_query .= "and property_furnished = {$request_result["property_furnished"]} ";
+        }
+        
+        if (!empty($request_result["request_balcony_sqm_from"])) {
+            $property_query .= "and property_balcony_sqm >= {$request_result["request_balcony_sqm_from"]} ";
+        }
+        if (!empty($request_result["request_balcony_sqm_to"])) {
+            $property_query .= "and property_balcony_sqm <= {$request_result["request_balcony_sqm_to"]} ";
+        }
+        
+        if (!empty($request_result["request_garden_sqm_from"])) {
+            $property_query .= "and property_garden_sqm >= {$request_result["request_garden_sqm_from"]} ";
+        }
+        if (!empty($request_result["request_garden_sqm_to"])) {
+            $property_query .= "and property_garden_sqm <= {$request_result["request_garden_sqm_to"]} ";
+        }
+        
+        if (!empty($request_result["request_floor"])) {
+            $property_query .= "and property_floor >= {$request_result["request_floor"]} ";
+        }
+        
+        if (!empty($request_result["property_levels"])) {
+            $property_query .= "and property_levels >= {$request_result["property_levels"]} ";
+        }
+        
+        if (!empty($request_result["request_fireplace"])) {
+            $property_query .= "and property_fireplace > 0 ";
+        }
+        
+        if (!empty($request_result["request_air_condition"])) {
+            $property_query .= "and property_air_condition > 0 ";
+        }
+        
+        if (!empty($request_result["request_pool_sqm_from"])) {
+            $property_query .= "and property_pool_sqm >= {$request_result["request_pool_sqm_from"]} ";
+        }
+        if (!empty($request_result["request_pool_sqm_to"])) {
+            $property_query .= "and property_pool_sqm <= {$request_result["request_pool_sqm_to"]} ";
+        }
+        
+        $prefecture_ids = $this->get_request_prefecture_data($request_id);
+        
+        $property_query .= "and property_prefecture_id in (" . implode(",", $prefecture_ids) . ") ";
+        
+        $municipality_ids = $this->get_request_municipality_data($request_id);
+        
+        $property_query .= "and property_municipality_id in (" . implode(",", $municipality_ids) . ") ";
+        
+        $area_ids = $this->get_request_area_data($request_id);
+        
+        $property_query .= "and property_area_id in (" . implode(",", $area_ids) . ") ";
+        
+        $heating_ids = $this->get_request_heating_data($request_id);
+        
+        $property_query .= "and property_heating_id in (" . implode(",", $heating_ids) . ") ";
+        
+        $type_ids = $this->get_request_type_data($request_id);
+        
+        $property_query .= "and property_property_type_id in (" . implode(",", $type_ids) . ") ";
+        
+        $status_ids = $this->get_request_status_data($request_id);
+        
+        $property_query .= "and property_property_status_id in (" . implode(",", $status_ids) . ") ";
+        
+        
+        var_dump($property_query);
+    }
      
 }

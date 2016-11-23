@@ -218,14 +218,20 @@
         </div>
     </div>
     <div class="row margin-bottom-30">
-        <div class="col-md-4">
-
+        <div class="col-md-2">
+            <button type="button" class="btn btn-warning pull-left" id="back_to_list">Επιστροφή στη λίστα</button>                        
         </div>
-        <div class="col-md-4">
-
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger pull-left" id="clear_form">Καθαρισμός φόρμας</button>                        
         </div>
-        <div class="col-md-4">
-            <button type="button" class="btn btn-primary pull-right" id="submit_request">Αποθήκευση</button>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info pull-left" id="submit_request_remain">Αποθήκευση και παραμονή</button>            
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success pull-right" id="submit_request_clear">Αποθήκευση και καθαρισμός</button>            
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary pull-right" id="submit_request">Αποθήκευση και επιστροφή</button>            
         </div>
     </div>
     <input type="hidden" id="is_edit" value="<?= !empty($request_data) ? 1 : 0; ?>">
@@ -234,6 +240,13 @@
 <script>
 
     $("#add_request_form").validate();
+
+    $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
+        window.location.href = "/request/request_list";
+    });
+    $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
+        window.location.href = "/request/add_request";
+    });
 
     $('#is_furnished').bootstrapSwitch({
         "onText": "Επιπλωμένο",
@@ -265,7 +278,9 @@
         }
     });
 
-    $("body").off("click", "#submit_request").on("click", "#submit_request", function () {
+    $("body").off("click", "#submit_request, #submit_request_remain, #submit_request_clear").on("click", "#submit_request, #submit_request_remain, #submit_request_clear", function () {
+        var that = this;
+        
         if (!$("#add_request_form").valid()) {
             return false;
         }
@@ -310,9 +325,14 @@
             if ($("#is_edit").val() == 0) {
                 $("#is_edit").val(1);
                 $("#request_id").val(data);                
+            }
+            
+            if ($(that).attr("id") === "submit_request_remain") {
                 window.location.href = "/request/edit_request/" + data;
-            } else {
-                window.location.href = "/request/edit_request/" + $("#request_id").val();                
+            } else if ($(that).attr("id") === "submit_request_clear") {
+                window.location.href = "/request/add_request";
+            } else if ($(that).attr("id") === "submit_request") {
+                window.location.href = "/request/request_list";                
             }
         });
 
