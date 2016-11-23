@@ -11,11 +11,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for real_estate
+DROP DATABASE IF EXISTS `real_estate`;
 CREATE DATABASE IF NOT EXISTS `real_estate` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `real_estate`;
 
 
 -- Dumping structure for table real_estate.area
+DROP TABLE IF EXISTS `area`;
 CREATE TABLE IF NOT EXISTS `area` (
   `area_id` int(11) NOT NULL,
   `area_label` varchar(50) DEFAULT NULL,
@@ -30,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.area: ~0 rows (approximately)
+DELETE FROM `area`;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
 INSERT INTO `area` (`area_id`, `area_label`, `area_latitude`, `area_longitude`, `area_zoom`, `area_radius`, `area_municipality_id`) VALUES
 	(1, 'test area', 44.444444400, 77.777777000, 14, 1000, 1);
@@ -37,6 +40,7 @@ INSERT INTO `area` (`area_id`, `area_label`, `area_latitude`, `area_longitude`, 
 
 
 -- Dumping structure for table real_estate.customer
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_created_date_time` datetime DEFAULT NULL,
@@ -63,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.customer: ~11 rows (approximately)
+DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`customer_id`, `customer_created_date_time`, `customer_updated_date_time`, `customer_user_id`, `customer_customer_status_id`, `customer_customer_type_id`, `customer_name`, `customer_lastname`, `customer_address`, `customer_address_no`, `customer_telephone`, `customer_mobile`, `customer_email`, `customer_username`, `customer_password`) VALUES
 	(1, '2016-11-23 00:18:01', NULL, 1, 1, 1, 'Cust_test', 'Cust_tester', 'Siatistis 33', 0, '33991929394', '6966938492e', 'cust.test@test.com', 'test_customer', 'test_customer_pass'),
@@ -80,6 +85,7 @@ INSERT INTO `customer` (`customer_id`, `customer_created_date_time`, `customer_u
 
 
 -- Dumping structure for table real_estate.customer_status
+DROP TABLE IF EXISTS `customer_status`;
 CREATE TABLE IF NOT EXISTS `customer_status` (
   `customer_status_id` int(11) NOT NULL,
   `customer_status_label` varchar(50) DEFAULT NULL,
@@ -87,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `customer_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.customer_status: ~4 rows (approximately)
+DELETE FROM `customer_status`;
 /*!40000 ALTER TABLE `customer_status` DISABLE KEYS */;
 INSERT INTO `customer_status` (`customer_status_id`, `customer_status_label`) VALUES
 	(-1, 'Διαγραμμένος'),
@@ -97,6 +104,7 @@ INSERT INTO `customer_status` (`customer_status_id`, `customer_status_label`) VA
 
 
 -- Dumping structure for table real_estate.customer_type
+DROP TABLE IF EXISTS `customer_type`;
 CREATE TABLE IF NOT EXISTS `customer_type` (
   `customer_type_id` int(11) NOT NULL,
   `customer_type_label` varchar(50) DEFAULT NULL,
@@ -104,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `customer_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.customer_type: ~4 rows (approximately)
+DELETE FROM `customer_type`;
 /*!40000 ALTER TABLE `customer_type` DISABLE KEYS */;
 INSERT INTO `customer_type` (`customer_type_id`, `customer_type_label`) VALUES
 	(1, 'Ιδιοκτήτης προς πώληση'),
@@ -114,6 +123,7 @@ INSERT INTO `customer_type` (`customer_type_id`, `customer_type_label`) VALUES
 
 
 -- Dumping structure for table real_estate.heating
+DROP TABLE IF EXISTS `heating`;
 CREATE TABLE IF NOT EXISTS `heating` (
   `heating_id` int(11) NOT NULL,
   `heating_label` varchar(50) DEFAULT NULL,
@@ -121,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `heating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.heating: ~6 rows (approximately)
+DELETE FROM `heating`;
 /*!40000 ALTER TABLE `heating` DISABLE KEYS */;
 INSERT INTO `heating` (`heating_id`, `heating_label`) VALUES
 	(1, 'Χωρίς θέρμανση'),
@@ -132,6 +143,7 @@ INSERT INTO `heating` (`heating_id`, `heating_label`) VALUES
 
 
 -- Dumping structure for table real_estate.municipality
+DROP TABLE IF EXISTS `municipality`;
 CREATE TABLE IF NOT EXISTS `municipality` (
   `municipality_id` int(11) NOT NULL,
   `municipality_label` varchar(50) DEFAULT NULL,
@@ -146,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `municipality` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.municipality: ~0 rows (approximately)
+DELETE FROM `municipality`;
 /*!40000 ALTER TABLE `municipality` DISABLE KEYS */;
 INSERT INTO `municipality` (`municipality_id`, `municipality_label`, `municipality_latitude`, `municipality_longitude`, `municipality_zoom`, `municipality_radius`, `municipality_prefecture_id`) VALUES
 	(1, 'test municipality', 33.333333300, 88.888888888, 10, 5000, 1);
@@ -153,6 +166,7 @@ INSERT INTO `municipality` (`municipality_id`, `municipality_label`, `municipali
 
 
 -- Dumping structure for table real_estate.prefecture
+DROP TABLE IF EXISTS `prefecture`;
 CREATE TABLE IF NOT EXISTS `prefecture` (
   `prefecture_id` int(11) NOT NULL,
   `prefecture_label` varchar(50) DEFAULT NULL,
@@ -164,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `prefecture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.prefecture: ~0 rows (approximately)
+DELETE FROM `prefecture`;
 /*!40000 ALTER TABLE `prefecture` DISABLE KEYS */;
 INSERT INTO `prefecture` (`prefecture_id`, `prefecture_label`, `prefecture_latitude`, `prefecture_longitude`, `prefecture_zoom`, `prefecture_radius`) VALUES
 	(1, 'test prefecture', 22.222222200, 99.999999000, 8, 10000);
@@ -171,6 +186,7 @@ INSERT INTO `prefecture` (`prefecture_id`, `prefecture_label`, `prefecture_latit
 
 
 -- Dumping structure for table real_estate.property
+DROP TABLE IF EXISTS `property`;
 CREATE TABLE IF NOT EXISTS `property` (
   `property_id` int(11) NOT NULL AUTO_INCREMENT,
   `property_created_date_time` datetime DEFAULT NULL,
@@ -218,6 +234,7 @@ CREATE TABLE IF NOT EXISTS `property` (
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property: ~42 rows (approximately)
+DELETE FROM `property`;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
 INSERT INTO `property` (`property_id`, `property_created_date_time`, `property_updated_date_time`, `property_user_id`, `property_property_status_id`, `property_property_type_id`, `property_transaction_type_id`, `property_heating_id`, `property_prefecture_id`, `property_municipality_id`, `property_area_id`, `property_sqm`, `property_price`, `property_description`, `property_description_en`, `property_label`, `property_address`, `property_address_no`, `property_furnished`, `property_balcony_sqm`, `property_garden_sqm`, `property_floor`, `property_levels`, `property_fireplace`, `property_air_condition`, `property_pool_sqm`) VALUES
 	(2, '2016-11-15 00:09:32', '2016-11-22 22:44:30', 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', '', 'spiti testaki', 'Siatistis', 33, 0, 25, 434, 43, 1, 34, 4, 0),
@@ -266,6 +283,7 @@ INSERT INTO `property` (`property_id`, `property_created_date_time`, `property_u
 
 
 -- Dumping structure for table real_estate.property_customer
+DROP TABLE IF EXISTS `property_customer`;
 CREATE TABLE IF NOT EXISTS `property_customer` (
   `property_customer_property_id` int(11) NOT NULL DEFAULT '0',
   `property_customer_customer_id` int(11) NOT NULL DEFAULT '0',
@@ -276,11 +294,13 @@ CREATE TABLE IF NOT EXISTS `property_customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_customer: ~0 rows (approximately)
+DELETE FROM `property_customer`;
 /*!40000 ALTER TABLE `property_customer` DISABLE KEYS */;
 /*!40000 ALTER TABLE `property_customer` ENABLE KEYS */;
 
 
 -- Dumping structure for table real_estate.property_level
+DROP TABLE IF EXISTS `property_level`;
 CREATE TABLE IF NOT EXISTS `property_level` (
   `property_level_id` int(11) NOT NULL AUTO_INCREMENT,
   `property_level_property_id` int(11) NOT NULL DEFAULT '0',
@@ -295,11 +315,13 @@ CREATE TABLE IF NOT EXISTS `property_level` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_level: ~0 rows (approximately)
+DELETE FROM `property_level`;
 /*!40000 ALTER TABLE `property_level` DISABLE KEYS */;
 /*!40000 ALTER TABLE `property_level` ENABLE KEYS */;
 
 
 -- Dumping structure for table real_estate.property_media
+DROP TABLE IF EXISTS `property_media`;
 CREATE TABLE IF NOT EXISTS `property_media` (
   `property_media_property_media_type_id` int(11) NOT NULL DEFAULT '0',
   `property_media_property_id` int(11) NOT NULL,
@@ -314,11 +336,13 @@ CREATE TABLE IF NOT EXISTS `property_media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_media: ~0 rows (approximately)
+DELETE FROM `property_media`;
 /*!40000 ALTER TABLE `property_media` DISABLE KEYS */;
 /*!40000 ALTER TABLE `property_media` ENABLE KEYS */;
 
 
 -- Dumping structure for table real_estate.property_media_type
+DROP TABLE IF EXISTS `property_media_type`;
 CREATE TABLE IF NOT EXISTS `property_media_type` (
   `property_media_type_id` int(11) NOT NULL,
   `property_media_type_label` varchar(50) DEFAULT NULL,
@@ -326,6 +350,7 @@ CREATE TABLE IF NOT EXISTS `property_media_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_media_type: ~2 rows (approximately)
+DELETE FROM `property_media_type`;
 /*!40000 ALTER TABLE `property_media_type` DISABLE KEYS */;
 INSERT INTO `property_media_type` (`property_media_type_id`, `property_media_type_label`) VALUES
 	(1, 'Φωτογραφία'),
@@ -335,6 +360,7 @@ INSERT INTO `property_media_type` (`property_media_type_id`, `property_media_typ
 
 
 -- Dumping structure for table real_estate.property_status
+DROP TABLE IF EXISTS `property_status`;
 CREATE TABLE IF NOT EXISTS `property_status` (
   `property_status_id` int(11) NOT NULL,
   `property_status_label` varchar(50) DEFAULT NULL,
@@ -342,6 +368,7 @@ CREATE TABLE IF NOT EXISTS `property_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_status: ~5 rows (approximately)
+DELETE FROM `property_status`;
 /*!40000 ALTER TABLE `property_status` DISABLE KEYS */;
 INSERT INTO `property_status` (`property_status_id`, `property_status_label`) VALUES
 	(-1, 'Διαγραμμένο'),
@@ -353,6 +380,7 @@ INSERT INTO `property_status` (`property_status_id`, `property_status_label`) VA
 
 
 -- Dumping structure for table real_estate.property_type
+DROP TABLE IF EXISTS `property_type`;
 CREATE TABLE IF NOT EXISTS `property_type` (
   `property_type_id` int(11) NOT NULL,
   `property_type_label` varchar(50) DEFAULT NULL,
@@ -360,6 +388,7 @@ CREATE TABLE IF NOT EXISTS `property_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.property_type: ~7 rows (approximately)
+DELETE FROM `property_type`;
 /*!40000 ALTER TABLE `property_type` DISABLE KEYS */;
 INSERT INTO `property_type` (`property_type_id`, `property_type_label`) VALUES
 	(1, 'Βίλα'),
@@ -373,6 +402,7 @@ INSERT INTO `property_type` (`property_type_id`, `property_type_label`) VALUES
 
 
 -- Dumping structure for table real_estate.request
+DROP TABLE IF EXISTS `request`;
 CREATE TABLE IF NOT EXISTS `request` (
   `request_id` int(11) NOT NULL AUTO_INCREMENT,
   `request_created_date_time` datetime DEFAULT NULL,
@@ -403,6 +433,7 @@ CREATE TABLE IF NOT EXISTS `request` (
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request: ~18 rows (approximately)
+DELETE FROM `request`;
 /*!40000 ALTER TABLE `request` DISABLE KEYS */;
 INSERT INTO `request` (`request_id`, `request_created_date_time`, `request_updated_date_time`, `request_transaction_type_id`, `request_user_id`, `request_customer_id`, `request_sqm_from`, `request_sqm_to`, `request_price_from`, `request_price_to`, `request_furnished`, `request_balcony_sqm_from`, `request_balcony_sqm_to`, `request_garden_sqm_from`, `request_garden_sqm_to`, `request_floor`, `request_levels`, `request_fireplace`, `request_air_condition`, `request_pool_sqm_from`, `request_pool_sqm_to`) VALUES
 	(1, '2016-11-18 00:20:14', NULL, NULL, 1, 1, 1.00, 4.00, 3.00, 6.00, 1, 2.00, 5.00, 5.00, 8.00, 4, 2, 11, 23, 4.00, 7.00),
@@ -427,6 +458,7 @@ INSERT INTO `request` (`request_id`, `request_created_date_time`, `request_updat
 
 
 -- Dumping structure for table real_estate.request_area
+DROP TABLE IF EXISTS `request_area`;
 CREATE TABLE IF NOT EXISTS `request_area` (
   `request_area_request_id` int(11) NOT NULL,
   `request_area_area_id` int(11) NOT NULL,
@@ -437,6 +469,7 @@ CREATE TABLE IF NOT EXISTS `request_area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_area: ~12 rows (approximately)
+DELETE FROM `request_area`;
 /*!40000 ALTER TABLE `request_area` DISABLE KEYS */;
 INSERT INTO `request_area` (`request_area_request_id`, `request_area_area_id`) VALUES
 	(6, 1),
@@ -455,6 +488,7 @@ INSERT INTO `request_area` (`request_area_request_id`, `request_area_area_id`) V
 
 
 -- Dumping structure for table real_estate.request_heating
+DROP TABLE IF EXISTS `request_heating`;
 CREATE TABLE IF NOT EXISTS `request_heating` (
   `request_heating_request_id` int(11) NOT NULL,
   `request_heating_heating_id` int(11) NOT NULL,
@@ -465,6 +499,7 @@ CREATE TABLE IF NOT EXISTS `request_heating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_heating: ~25 rows (approximately)
+DELETE FROM `request_heating`;
 /*!40000 ALTER TABLE `request_heating` DISABLE KEYS */;
 INSERT INTO `request_heating` (`request_heating_request_id`, `request_heating_heating_id`) VALUES
 	(6, 2),
@@ -496,6 +531,7 @@ INSERT INTO `request_heating` (`request_heating_request_id`, `request_heating_he
 
 
 -- Dumping structure for table real_estate.request_municipality
+DROP TABLE IF EXISTS `request_municipality`;
 CREATE TABLE IF NOT EXISTS `request_municipality` (
   `request_municipality_request_id` int(11) NOT NULL,
   `request_municipality_municipality_id` int(11) NOT NULL,
@@ -506,6 +542,7 @@ CREATE TABLE IF NOT EXISTS `request_municipality` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_municipality: ~12 rows (approximately)
+DELETE FROM `request_municipality`;
 /*!40000 ALTER TABLE `request_municipality` DISABLE KEYS */;
 INSERT INTO `request_municipality` (`request_municipality_request_id`, `request_municipality_municipality_id`) VALUES
 	(6, 1),
@@ -524,6 +561,7 @@ INSERT INTO `request_municipality` (`request_municipality_request_id`, `request_
 
 
 -- Dumping structure for table real_estate.request_prefecture
+DROP TABLE IF EXISTS `request_prefecture`;
 CREATE TABLE IF NOT EXISTS `request_prefecture` (
   `request_prefecture_request_id` int(11) NOT NULL,
   `request_prefecture_prefecture_id` int(11) NOT NULL,
@@ -534,6 +572,7 @@ CREATE TABLE IF NOT EXISTS `request_prefecture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_prefecture: ~12 rows (approximately)
+DELETE FROM `request_prefecture`;
 /*!40000 ALTER TABLE `request_prefecture` DISABLE KEYS */;
 INSERT INTO `request_prefecture` (`request_prefecture_request_id`, `request_prefecture_prefecture_id`) VALUES
 	(6, 1),
@@ -552,6 +591,7 @@ INSERT INTO `request_prefecture` (`request_prefecture_request_id`, `request_pref
 
 
 -- Dumping structure for table real_estate.request_property
+DROP TABLE IF EXISTS `request_property`;
 CREATE TABLE IF NOT EXISTS `request_property` (
   `request_property_request_id` int(11) NOT NULL,
   `request_property_property_id` int(11) NOT NULL,
@@ -563,11 +603,13 @@ CREATE TABLE IF NOT EXISTS `request_property` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_property: ~0 rows (approximately)
+DELETE FROM `request_property`;
 /*!40000 ALTER TABLE `request_property` DISABLE KEYS */;
 /*!40000 ALTER TABLE `request_property` ENABLE KEYS */;
 
 
 -- Dumping structure for table real_estate.request_status
+DROP TABLE IF EXISTS `request_status`;
 CREATE TABLE IF NOT EXISTS `request_status` (
   `request_status_request_id` int(11) NOT NULL,
   `request_status_status_id` int(11) NOT NULL,
@@ -575,6 +617,7 @@ CREATE TABLE IF NOT EXISTS `request_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_status: ~20 rows (approximately)
+DELETE FROM `request_status`;
 /*!40000 ALTER TABLE `request_status` DISABLE KEYS */;
 INSERT INTO `request_status` (`request_status_request_id`, `request_status_status_id`) VALUES
 	(-1, 0),
@@ -601,6 +644,7 @@ INSERT INTO `request_status` (`request_status_request_id`, `request_status_statu
 
 
 -- Dumping structure for table real_estate.request_type
+DROP TABLE IF EXISTS `request_type`;
 CREATE TABLE IF NOT EXISTS `request_type` (
   `request_type_request_id` int(11) NOT NULL,
   `request_type_property_type_id` int(11) NOT NULL,
@@ -611,6 +655,7 @@ CREATE TABLE IF NOT EXISTS `request_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.request_type: ~26 rows (approximately)
+DELETE FROM `request_type`;
 /*!40000 ALTER TABLE `request_type` DISABLE KEYS */;
 INSERT INTO `request_type` (`request_type_request_id`, `request_type_property_type_id`) VALUES
 	(6, 3),
@@ -643,6 +688,7 @@ INSERT INTO `request_type` (`request_type_request_id`, `request_type_property_ty
 
 
 -- Dumping structure for table real_estate.room_type
+DROP TABLE IF EXISTS `room_type`;
 CREATE TABLE IF NOT EXISTS `room_type` (
   `room_type_id` int(11) NOT NULL,
   `room_type_label` varchar(50) DEFAULT NULL,
@@ -650,11 +696,13 @@ CREATE TABLE IF NOT EXISTS `room_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.room_type: ~0 rows (approximately)
+DELETE FROM `room_type`;
 /*!40000 ALTER TABLE `room_type` DISABLE KEYS */;
 /*!40000 ALTER TABLE `room_type` ENABLE KEYS */;
 
 
 -- Dumping structure for table real_estate.transaction_type
+DROP TABLE IF EXISTS `transaction_type`;
 CREATE TABLE IF NOT EXISTS `transaction_type` (
   `transaction_type_id` int(11) NOT NULL,
   `transaction_type_label` varchar(50) DEFAULT NULL,
@@ -662,6 +710,7 @@ CREATE TABLE IF NOT EXISTS `transaction_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.transaction_type: ~5 rows (approximately)
+DELETE FROM `transaction_type`;
 /*!40000 ALTER TABLE `transaction_type` DISABLE KEYS */;
 INSERT INTO `transaction_type` (`transaction_type_id`, `transaction_type_label`) VALUES
 	(1, 'Πώληση'),
@@ -673,6 +722,7 @@ INSERT INTO `transaction_type` (`transaction_type_id`, `transaction_type_label`)
 
 
 -- Dumping structure for table real_estate.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) DEFAULT NULL,
@@ -688,6 +738,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.user: ~22 rows (approximately)
+DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_id`, `user_name`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`, `user_user_status_id`) VALUES
 	(1, 'Test', 'Tester', 'test_user', 'test_pass', 'test@test.com', 1, 1),
@@ -717,6 +768,7 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_lastname`, `user_username`, `u
 
 
 -- Dumping structure for table real_estate.user_status
+DROP TABLE IF EXISTS `user_status`;
 CREATE TABLE IF NOT EXISTS `user_status` (
   `user_status_id` int(11) NOT NULL,
   `user_status_label` varchar(50) DEFAULT NULL,
@@ -724,6 +776,7 @@ CREATE TABLE IF NOT EXISTS `user_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.user_status: ~4 rows (approximately)
+DELETE FROM `user_status`;
 /*!40000 ALTER TABLE `user_status` DISABLE KEYS */;
 INSERT INTO `user_status` (`user_status_id`, `user_status_label`) VALUES
 	(-1, 'Διαγραμμένος'),
