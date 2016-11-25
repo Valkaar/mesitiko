@@ -130,7 +130,17 @@ class Request extends CI_Controller {
         
         $matching_properties = $this->Request_model->fetch_matching_properties($request_id);
         
-        var_dump($matching_properties);
+        echo $matching_properties;
+    }
+    
+    public function get_matching_properties_list() {
+        if (!$this->input->post("request_id")) {
+            return false;
+        }
+        
+        $request_id = $this->input->post("request_id");
+        
+        echo $this->load->view("request/matching_properties", array("request_id" => $request_id), true);
     }
     
 }

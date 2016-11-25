@@ -13,6 +13,9 @@
     </thead>
     <tfoot></tfoot>
 </table>
+
+<div id="modal_content_wrapper"></div>
+
 <script>
     $(document).ready(function () {
         $('#request_list').DataTable({
@@ -34,18 +37,19 @@
                 $('td:eq(0)', row).html('<input type="checkbox" id="request_' + data.request_id + '">');
                 $("td:eq(7)", row).html(action_html);
             }
-        })
+        });
     });
-    
-    $("body").off("click", ".request-list-button").on("click", ".request-list-button", function() {
+
+    $("body").off("click", ".request-list-button").on("click", ".request-list-button", function () {
         $.ajax({
             type: "post",
-            url: "/request/get_matching_properties",
+            url: "/request/get_matching_properties_list",
             data: {
                 request_id: $(this).attr("rel")
             }
         }).done(function(data) {
-            console.log(data);
+            $("#modal_content_wrapper").html(data);
+            $('#matching_properties').modal();
         });
     });
 </script>

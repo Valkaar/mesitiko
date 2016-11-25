@@ -38,7 +38,7 @@
                 $('td:eq(0)', row).html('<input type="checkbox" id="property_' + data.property_id + '">');
                 $("td:eq(9)", row).html(action_html);
             }
-        })
+        });
     });
     
     $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
