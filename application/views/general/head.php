@@ -1,3 +1,5 @@
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
 <link rel="stylesheet" href="/assets/css/jquery-ui.css"/>
 <link rel="stylesheet" href="/assets/css/jquery-ui.structure.css"/>
 

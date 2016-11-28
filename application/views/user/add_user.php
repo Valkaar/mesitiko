@@ -64,13 +64,13 @@
             <button type="button" class="btn btn-danger pull-left" id="clear_form">Καθαρισμός φόρμας</button>                        
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-info pull-left" id="submit_customer_remain">Αποθήκευση και παραμονή</button>            
+            <button type="button" class="btn btn-info pull-left" id="submit_user_remain">Αποθήκευση και παραμονή</button>            
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-success pull-right" id="submit_customer_clear">Αποθήκευση και καθαρισμός</button>            
+            <button type="button" class="btn btn-success pull-right" id="submit_user_clear">Αποθήκευση και καθαρισμός</button>            
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary pull-right" id="submit_customer">Αποθήκευση και επιστροφή</button>            
+            <button type="button" class="btn btn-primary pull-right" id="submit_user">Αποθήκευση και επιστροφή</button>            
         </div>
     </div>
     <input type="hidden" id="is_edit" value="<?= !empty($user_data) ? 1 : 0; ?>">

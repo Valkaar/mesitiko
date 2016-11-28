@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Customer extends CI_Controller {
     
+    public function __construct() {
+        parent::__construct();
+        
+        if (!$this->session->has_userdata('username')) {
+            header('Location: /login');
+        }
+    }
+    
     public function add_customer() {
         $this->load->model("Customer_model");
         $this->load->model("User_model");

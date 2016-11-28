@@ -42,7 +42,7 @@ class User_model extends CI_Model {
             "user_name" => $user["name"],
             "user_lastname" => $user["lastname"],
             "user_username" => $user["username"],
-            "user_password" => $user["password"],
+            "user_password" => md5($user["password"]),
             "user_email" => $user["email"],
             "user_isadmin" => ($user["is_admin"] === "true" ? 1 : 0),
             "user_user_status_id" => $user["status"]

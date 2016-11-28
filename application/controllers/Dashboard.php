@@ -2,6 +2,14 @@
 
 class Dashboard extends CI_Controller {
     
+    public function __construct() {
+        parent::__construct();
+        
+        if (!$this->session->has_userdata('username')) {
+            header('Location: /login');
+        }
+    }
+    
     public function index() {
         $data = array(
             "head_view" => $this->load->view("general/head", array(), true),

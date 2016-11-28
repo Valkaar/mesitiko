@@ -18,15 +18,36 @@
 .textarea_full {
     width: 100%;
 }
-/*.error {
-    border: 1px solid red;
-    width: 100%;
-    text-align: center;
-}*/
 .correct { 
     border: 1px solid greenyellow;
 }
 div.neutral-border {
     border: 1px solid lightgrey;
     border-radius: 5px;
+}
+div.centered-div {
+    text-align: center;
+    padding: 0 100px;
+}
+.popover-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: red;
+}
+.main_body_container {
+    background-color: #dddddd;
+    min-height: 100%;
+}
+.main_content_container {
+    width: 100%;
+}
+body {
+    background-image: url("/assets/imgs/body_background.jpg");
+}
+.information_modal_toggler {
+    cursor: pointer;
+}
+div.map_container {
+    height: 80%;
 }
