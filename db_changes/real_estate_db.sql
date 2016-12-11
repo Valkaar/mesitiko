@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `area` (
   CONSTRAINT `FK_municipality` FOREIGN KEY (`area_municipality_id`) REFERENCES `municipality` (`municipality_id`) ON DELETE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table real_estate.area: ~0 rows (approximately)
+-- Dumping data for table real_estate.area: ~2 rows (approximately)
 DELETE FROM `area`;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
 INSERT INTO `area` (`area_id`, `area_label`, `area_latitude`, `area_longitude`, `area_zoom`, `area_radius`, `area_municipality_id`) VALUES
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   CONSTRAINT `FK_customer_customer_status` FOREIGN KEY (`customer_customer_status_id`) REFERENCES `customer_status` (`customer_status_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_customer_customer_type` FOREIGN KEY (`customer_customer_type_id`) REFERENCES `customer_type` (`customer_type_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_customer_user` FOREIGN KEY (`customer_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table real_estate.customer: ~11 rows (approximately)
 DELETE FROM `customer`;
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `prefecture` (
   PRIMARY KEY (`prefecture_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table real_estate.prefecture: ~0 rows (approximately)
+-- Dumping data for table real_estate.prefecture: ~2 rows (approximately)
 DELETE FROM `prefecture`;
 /*!40000 ALTER TABLE `prefecture` DISABLE KEYS */;
 INSERT INTO `prefecture` (`prefecture_id`, `prefecture_label`, `prefecture_latitude`, `prefecture_longitude`, `prefecture_zoom`, `prefecture_radius`) VALUES
@@ -215,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `property` (
   `property_floor` int(11) NOT NULL DEFAULT '0',
   `property_levels` int(11) NOT NULL DEFAULT '0',
   `property_fireplace` int(11) NOT NULL DEFAULT '0',
+  `propery_air_condition` int(11) NOT NULL DEFAULT '0',
   `property_air_condition` int(11) NOT NULL DEFAULT '0',
   `property_pool_sqm` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`property_id`),
@@ -236,49 +237,49 @@ CREATE TABLE IF NOT EXISTS `property` (
 -- Dumping data for table real_estate.property: ~42 rows (approximately)
 DELETE FROM `property`;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` (`property_id`, `property_created_date_time`, `property_updated_date_time`, `property_user_id`, `property_property_status_id`, `property_property_type_id`, `property_transaction_type_id`, `property_heating_id`, `property_prefecture_id`, `property_municipality_id`, `property_area_id`, `property_sqm`, `property_price`, `property_description`, `property_description_en`, `property_label`, `property_address`, `property_address_no`, `property_furnished`, `property_balcony_sqm`, `property_garden_sqm`, `property_floor`, `property_levels`, `property_fireplace`, `property_air_condition`, `property_pool_sqm`) VALUES
-	(2, '2016-11-15 00:09:32', '2016-11-22 22:44:30', 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', '', 'spiti testaki', 'Siatistis', 33, 0, 25, 434, 43, 1, 34, 4, 0),
-	(4, '2016-11-15 00:30:31', NULL, 1, 1, 4, 2, 5, 1, 1, 1, 65.00, 450.00, 'rent description for the rental property', NULL, 'rental test', 'Ag. Vasileiou', 3, 0, 8, 0, 2, 1, 0, 0, 0),
-	(6, '2016-11-15 21:51:52', '2016-11-23 00:30:05', 1, 2, 3, 1, 2, 1, 1, 1, 123.00, 500000.00, 'perigrafh akinhtou edw pera', '', 'test etiketa', 'tetete', 23, 0, 20, 20, 1, 2, 3, 2, 0),
-	(7, '2016-11-15 21:52:04', '2016-11-16 01:29:51', 1, 2, 3, 1, 2, 1, 1, 1, 123.00, 503400.00, 'perigrafh akinhtou edw pera', NULL, 'test etiketa', 'tetete', 23, 0, 20, 20, 1, 2, 3, 2, 0),
-	(8, '2016-11-15 21:54:36', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(9, '2016-11-15 21:54:45', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(10, '2016-11-15 21:54:45', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(11, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(12, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(13, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(14, '2016-11-15 21:54:46', '2016-11-21 03:20:22', 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', '', 'test etiketoula', 'testtest', 12, 0, 11, 12, 123, 12, 13, 13, 0),
-	(15, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(16, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(17, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(18, '2016-11-15 21:54:47', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0),
-	(19, '2016-11-15 21:56:59', NULL, 1, 1, 1, 2, 1, 1, 1, 1, 1212.00, 123123.00, 'aaaaaaaaaaaaaaaaaaaaaa', NULL, '123', 'aaaa', 12, 1, 123, 123, 31, 12, 1, 1, 0),
-	(20, '2016-11-15 21:58:28', '2016-11-17 20:06:08', 1, 1, 1, 1, 1, 1, 1, 1, 1.00, 123.00, '123123adfadfadf', 'asdgfargawrg', 'asdf', 'asd', 1, 0, 123, 123, 123, 123, 2, 2, 0),
-	(21, '2016-11-15 22:00:25', NULL, 1, 2, 2, 1, 1, 1, 1, 1, 1.00, 1.00, '1', NULL, 'qf', '1', 1, 1, 1, 1, 1, 1, 1, 1, 0),
-	(22, '2016-11-15 22:09:56', '2016-11-22 23:25:24', 1, 2, 2, 1, 1, 1, 1, 1, 1.00, 1.00, '1', '', 'qf', '1', 1, 0, 1, 1, 1, 1, 1, 1, 0),
-	(25, '2016-11-15 22:11:02', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0),
-	(26, '2016-11-15 22:11:16', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0),
-	(27, '2016-11-15 22:11:18', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0),
-	(28, '2016-11-15 22:11:38', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0),
-	(29, '2016-11-15 22:11:41', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0),
-	(30, '2016-11-15 22:16:34', NULL, 1, 1, 3, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 3, 3, 0),
-	(31, '2016-11-15 22:16:46', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(32, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(33, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(34, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(35, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(36, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(37, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(38, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(39, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(40, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(41, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(42, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(43, '2016-11-15 22:16:56', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0),
-	(44, '2016-11-15 22:17:27', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0),
-	(45, '2016-11-15 22:18:19', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0),
-	(46, '2016-11-15 22:18:20', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0),
-	(47, '2016-11-15 22:18:31', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0);
+INSERT INTO `property` (`property_id`, `property_created_date_time`, `property_updated_date_time`, `property_user_id`, `property_property_status_id`, `property_property_type_id`, `property_transaction_type_id`, `property_heating_id`, `property_prefecture_id`, `property_municipality_id`, `property_area_id`, `property_sqm`, `property_price`, `property_description`, `property_description_en`, `property_label`, `property_address`, `property_address_no`, `property_furnished`, `property_balcony_sqm`, `property_garden_sqm`, `property_floor`, `property_levels`, `property_fireplace`, `propery_air_condition`, `property_air_condition`, `property_pool_sqm`) VALUES
+	(2, '2016-11-15 00:09:32', '2016-11-22 22:44:30', 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', '', 'spiti testaki', 'Siatistis', 33, 0, 25, 434, 43, 1, 34, 4, 0, 0),
+	(4, '2016-11-15 00:30:31', NULL, 1, 1, 4, 2, 5, 1, 1, 1, 65.00, 450.00, 'rent description for the rental property', NULL, 'rental test', 'Ag. Vasileiou', 3, 0, 8, 0, 2, 1, 0, 0, 0, 0),
+	(6, '2016-11-15 21:51:52', '2016-11-23 00:30:05', 1, 2, 3, 1, 2, 1, 1, 1, 123.00, 500000.00, 'perigrafh akinhtou edw pera', '', 'test etiketa', 'tetete', 23, 0, 20, 20, 1, 2, 3, 2, 0, 0),
+	(7, '2016-11-15 21:52:04', '2016-11-16 01:29:51', 1, 2, 3, 1, 2, 1, 1, 1, 123.00, 503400.00, 'perigrafh akinhtou edw pera', NULL, 'test etiketa', 'tetete', 23, 0, 20, 20, 1, 2, 3, 2, 0, 0),
+	(8, '2016-11-15 21:54:36', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(9, '2016-11-15 21:54:45', '2016-12-11 21:18:50', 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', '', 'test etiketoula', 'testtest', 12, 0, 11, 12, 123, 12, 13, 13, 0, 0),
+	(10, '2016-11-15 21:54:45', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(11, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(12, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(13, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(14, '2016-11-15 21:54:46', '2016-11-21 03:20:22', 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', '', 'test etiketoula', 'testtest', 12, 0, 11, 12, 123, 12, 13, 13, 0, 0),
+	(15, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(16, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(17, '2016-11-15 21:54:46', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(18, '2016-11-15 21:54:47', NULL, 1, 1, 3, 2, 2, 1, 1, 1, 123.00, 123123.00, 'test perigrafh epipleon testaki', NULL, 'test etiketoula', 'testtest', 12, 1, 11, 12, 123, 12, 13, 13, 0, 0),
+	(19, '2016-11-15 21:56:59', NULL, 1, 1, 1, 2, 1, 1, 1, 1, 1212.00, 123123.00, 'aaaaaaaaaaaaaaaaaaaaaa', NULL, '123', 'aaaa', 12, 1, 123, 123, 31, 12, 1, 1, 0, 0),
+	(20, '2016-11-15 21:58:28', '2016-11-17 20:06:08', 1, 1, 1, 1, 1, 1, 1, 1, 1.00, 123.00, '123123adfadfadf', 'asdgfargawrg', 'asdf', 'asd', 1, 0, 123, 123, 123, 123, 2, 2, 0, 0),
+	(21, '2016-11-15 22:00:25', NULL, 1, 2, 2, 1, 1, 1, 1, 1, 1.00, 1.00, '1', NULL, 'qf', '1', 1, 1, 1, 1, 1, 1, 1, 1, 0, 0),
+	(22, '2016-11-15 22:09:56', '2016-11-22 23:25:24', 1, 2, 2, 1, 1, 1, 1, 1, 1.00, 1.00, '1', '', 'qf', '1', 1, 0, 1, 1, 1, 1, 1, 1, 0, 0),
+	(25, '2016-11-15 22:11:02', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0, 0),
+	(26, '2016-11-15 22:11:16', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0, 0),
+	(27, '2016-11-15 22:11:18', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0, 0),
+	(28, '2016-11-15 22:11:38', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0, 0),
+	(29, '2016-11-15 22:11:41', NULL, 1, 3, 1, 2, 2, 1, 1, 1, 1.00, 123123.00, 'testargaregag', NULL, '123', 'asdf', 1, 0, 2323, 1231, 111, 12312, 12, 23, 0, 0),
+	(30, '2016-11-15 22:16:34', NULL, 1, 1, 3, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 3, 3, 0, 0),
+	(31, '2016-11-15 22:16:46', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(32, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(33, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(34, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(35, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(36, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(37, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(38, '2016-11-15 22:16:47', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(39, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(40, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(41, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(42, '2016-11-15 22:16:48', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(43, '2016-11-15 22:16:56', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 44, 1, 0, 0, 0, 0),
+	(44, '2016-11-15 22:17:27', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0, 0),
+	(45, '2016-11-15 22:18:19', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0, 0),
+	(46, '2016-11-15 22:18:20', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0, 0),
+	(47, '2016-11-15 22:18:31', NULL, 1, 1, 1, 1, 4, 1, 1, 1, 12400.00, 250300.00, 'test description for property', NULL, 'spiti test', 'Siatistis', 33, 0, 25, 0, 4, 1, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 
 
@@ -737,7 +738,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `FK_user_user_status` FOREIGN KEY (`user_user_status_id`) REFERENCES `user_status` (`user_status_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
--- Dumping data for table real_estate.user: ~23 rows (approximately)
+-- Dumping data for table real_estate.user: ~24 rows (approximately)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_id`, `user_name`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`, `user_user_status_id`) VALUES
