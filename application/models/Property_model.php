@@ -171,6 +171,10 @@ class Property_model extends CI_Model {
         $db_handler->insert("property", $data);
         
         $property_id = $db_handler->insert_id();
+                
+        if (file_exists("assets/uploaded_files/0")) {
+            rename("assets/uploaded_files/0", "assets/uploaded_files/{$property_id}");
+        }
         
         return $property_id;
     }
