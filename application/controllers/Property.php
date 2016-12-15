@@ -8,7 +8,7 @@ class Property extends CI_Controller {
         parent::__construct();
         
         if (!$this->session->has_userdata('username')) {
-            header('Location: /login');
+            header('Location: ' . base_url() . 'login');
         }
     }
 

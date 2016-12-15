@@ -20,7 +20,7 @@
     $(document).ready(function () {
         $('#request_list').DataTable({
             "processing": true,
-            "ajax": "/request/get_requests_list",
+            "ajax": "<?= base_url(); ?>request/get_requests_list",
             "columns": [
                 {"data": "request_checked"},
                 {"data": "request_id"},
@@ -32,7 +32,7 @@
                 {"data": "request_actions"}
             ],
             "rowCallback": function(row, data, index) {
-                var action_html = "<a class='btn btn-success edit-button' href='/request/edit_request/" + data.request_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
+                var action_html = "<a class='btn btn-success edit-button' href='<?= base_url(); ?>request/edit_request/" + data.request_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
                                     + "<button class='btn btn-warning request-list-button' type='submit' rel='" + data.request_id + "'><span class='glyphicon glyphicon-home' title='Ακίνητα'></span></button>";
                 $('td:eq(0)', row).html('<input type="checkbox" id="request_' + data.request_id + '">');
                 $("td:eq(7)", row).html(action_html);
@@ -43,7 +43,7 @@
     $("body").off("click", ".request-list-button").on("click", ".request-list-button", function () {
         $.ajax({
             type: "post",
-            url: "/request/get_matching_properties_list",
+            url: "<?= base_url(); ?>request/get_matching_properties_list",
             data: {
                 request_id: $(this).attr("rel")
             }

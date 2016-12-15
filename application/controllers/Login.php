@@ -8,7 +8,7 @@ class Login extends CI_Controller {
         $this->load->library("session");
         
         if ($this->session->has_userdata('username')) {
-            header('Location: /');
+            header('Location: ' . base_url() . '');
         }
     }
 

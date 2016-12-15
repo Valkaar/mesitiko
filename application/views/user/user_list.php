@@ -17,7 +17,7 @@
     $(document).ready(function () {
         $('#user_list').DataTable({
             "processing": true,
-            "ajax": "/user/get_users_list",
+            "ajax": "<?= base_url(); ?>user/get_users_list",
             "columns": [
                 {"data": "user_checked"},
                 {"data": "user_id"},
@@ -29,7 +29,7 @@
                 {"data": "user_actions"}
             ],
             "rowCallback": function(row, data, index) {
-                var action_html = "<a class='btn btn-success edit-button' href='/user/edit_user/" + data.user_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
+                var action_html = "<a class='btn btn-success edit-button' href='<?= base_url(); ?>user/edit_user/" + data.user_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
                                     + "<button class='btn btn-danger delete-button' type='submit' rel='" + data.user_id + "'><span class='glyphicon glyphicon-remove' title='Διαγραφή'></span></button>";
                 $('td:eq(0)', row).html('<input type="checkbox" id="user_' + data.user_id + '">');
                 $("td:eq(7)", row).html(action_html);
@@ -40,12 +40,12 @@
     $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
         $.ajax({
             type: "post",
-            url: "/user/delete_user",
+            url: "<?= base_url(); ?>user/delete_user",
             data: {
                 user_id: $(this).attr("rel")
             }
         }).done(function(data) {
-            window.location.href = "/user/user_list";
+            window.location.href = "<?= base_url(); ?>user/user_list";
         });
     });
 </script>

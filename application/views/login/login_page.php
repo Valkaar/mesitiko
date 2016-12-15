@@ -38,7 +38,7 @@
         $("body").off("click", "#submit_login").on("click", "#submit_login", function () {
             $.ajax({
                 type: "post",
-                url: "/login/login_auth",
+                url: "<?= base_url(); ?>login/login_auth",
                 data: {
                     username: $("#username").val(),
                     password: $("#password").val()
@@ -47,7 +47,7 @@
                 $("#password").val("");
                 console.log(data);
                 if (data == 1) {
-                    window.location.href = "/dashboard";
+                    window.location.href = "<?= base_url(); ?>dashboard";
                 } else {
                     $("#submit_login").popover("show");
                     setTimeout(function() {

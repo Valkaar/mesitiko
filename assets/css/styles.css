@@ -43,7 +43,7 @@ div.centered-div {
     width: 100%;
 }
 body {
-    background-image: url("/assets/imgs/body_background.jpg");
+    background-image: url("/local.realestate/assets/imgs/body_background.jpg");
 }
 .information_modal_toggler {
     cursor: pointer;

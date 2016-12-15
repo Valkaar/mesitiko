@@ -81,10 +81,10 @@
     $("#add_user_form").validate();
 
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/user/user_list";
+        window.location.href = "<?= base_url(); ?>user/user_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/user/add_user";
+        window.location.href = "<?= base_url(); ?>user/add_user";
     });
 
     $("#is_admin").bootstrapSwitch({
@@ -113,7 +113,7 @@
         
         $.ajax({
             type: "post",
-            url: "/user/save_user",
+            url: "<?= base_url(); ?>user/save_user",
             data: {
                 "user": user_object
             }
@@ -124,11 +124,11 @@
             }
             
             if ($(that).attr("id") === "submit_user_remain") {
-                window.location.href = "/user/edit_user/" + data;
+                window.location.href = "<?= base_url(); ?>user/edit_user/" + data;
             } else if ($(that).attr("id") === "submit_user_clear") {
-                window.location.href = "/user/add_user";
+                window.location.href = "<?= base_url(); ?>user/add_user";
             } else if ($(that).attr("id") === "submit_user") {
-                window.location.href = "/user/user_list";                
+                window.location.href = "<?= base_url(); ?>/user/user_list";                
             }
         });
     });

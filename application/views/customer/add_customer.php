@@ -131,10 +131,10 @@
     $("#add_customer_form").validate();
     
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function() {
-        window.location.href = "/customer/customer_list";
+        window.location.href = "<?= base_url(); ?>customer/customer_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function() {
-        window.location.href = "/customer/add_customer";
+        window.location.href = "<?= base_url(); ?>customer/add_customer";
     });
 
     $("body").off("click", "#submit_customer, #submit_customer_clear, #submit_customer_remain").on("click", "#submit_customer, submit_customer_clear, #submit_customer_remain", function () {
@@ -163,7 +163,7 @@
 
         $.ajax({
             type: "post",
-            url: "/customer/save_customer",
+            url: "<?= base_url(); ?>customer/save_customer",
             data: {
                 "customer": customer_object
             }

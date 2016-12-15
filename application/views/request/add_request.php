@@ -242,10 +242,10 @@
     $("#add_request_form").validate();
 
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/request/request_list";
+        window.location.href = "<?= base_url(); ?>request/request_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/request/add_request";
+        window.location.href = "<?= base_url(); ?>request/add_request";
     });
 
     $('#is_furnished').bootstrapSwitch({
@@ -317,7 +317,7 @@
 
         $.ajax({
             type: "post",
-            url: "/request/save_request",
+            url: "<?= base_url(); ?>request/save_request",
             data: {
                 "request": request_object
             }
@@ -328,11 +328,11 @@
             }
             
             if ($(that).attr("id") === "submit_request_remain") {
-                window.location.href = "/request/edit_request/" + data;
+                window.location.href = "<?= base_url(); ?>request/edit_request/" + data;
             } else if ($(that).attr("id") === "submit_request_clear") {
-                window.location.href = "/request/add_request";
+                window.location.href = "<?= base_url(); ?>request/add_request";
             } else if ($(that).attr("id") === "submit_request") {
-                window.location.href = "/request/request_list";                
+                window.location.href = "<?= base_url(); ?>/request/request_list";                
             }
         });
 

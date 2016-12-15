@@ -20,7 +20,7 @@
     $(document).ready(function () {
         $('#customer_list').DataTable({
             "processing": true,
-            "ajax": "/customer/get_customers_list",
+            "ajax": "<?= base_url(); ?>customer/get_customers_list",
             "columns": [
                 {"data": "customer_checked"},
                 {"data": "customer_id"},
@@ -35,7 +35,7 @@
                 {"data": "customer_actions"}
             ],
             "rowCallback": function(row, data, index) {
-                var action_html = "<a class='btn btn-success edit-button' href='/customer/edit_customer/" + data.customer_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
+                var action_html = "<a class='btn btn-success edit-button' href='<?= base_url(); ?>customer/edit_customer/" + data.customer_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
                                     + "<button class='btn btn-danger delete-button' type='submit' rel='" + data.customer_id + "'><span class='glyphicon glyphicon-remove' title='Διαγραφή'></span></button>";
                 $('td:eq(0)', row).html('<input type="checkbox" id="customer_' + data.customer_id + '">');
                 $("td:eq(10)", row).html(action_html);
@@ -46,12 +46,12 @@
     $("body").off("click", ".delete-button").on("click", ".delete-button", function() {
         $.ajax({
             type: "post",
-            url: "/customer/delete_customer",
+            url: "<?= base_url(); ?>customer/delete_customer",
             data: {
                 customer_id: $(this).attr("rel")
             }
         }).done(function(data) {
-            window.location.href = "/customer/customer_list";
+            window.location.href = "<?= base_url(); ?>customer/customer_list";
         });
     });
 </script>

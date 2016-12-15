@@ -35,7 +35,7 @@
         $("#matching_properties_list").DataTable({
             "processing": true,
             "ajax": {
-                "url": "/request/get_matching_properties",
+                "url": "<?= base_url(); ?>request/get_matching_properties",
                 "type": "post",
                 "data": {
                     "request_id": <?= $request_id; ?>
@@ -54,7 +54,7 @@
                 {"data": "property_actions"}
             ],
             "rowCallback": function(row, data, index) {
-                var action_html = "<a class='btn btn-success edit-button' href='/property/edit_property/" + data.property_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
+                var action_html = "<a class='btn btn-success edit-button' href='<?= base_url(); ?>property/edit_property/" + data.property_id + "'><span class='glyphicon glyphicon-pencil' title='Επεξεργασία'></span></a>"
                                     + "<button class='btn btn-danger delete-button' type='submit' rel='" + data.property_id + "'><span class='glyphicon glyphicon-remove' title='Διαγραφή'></span></button>";
                 $('td:eq(0)', row).html('<input type="checkbox" id="property_' + data.property_id + '">');
                 $("td:eq(9)", row).html(action_html);

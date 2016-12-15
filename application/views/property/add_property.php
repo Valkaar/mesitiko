@@ -355,7 +355,7 @@
                         $("#property_id").val(data);
                     }
                     
-                    window.location.href = "/property/property_list";
+                        window.location.href = "/property/property_list";
 
 //                    if (submitButton.attr("id") === "submit_property_remain") {
 //                        window.location.href = "/property/edit_property/" + data;

@@ -64,10 +64,10 @@
 </form>
 <script>
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/geography/municipality_list";
+        window.location.href = "<?= base_url(); ?>geography/municipality_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/geography/add_municipality";
+        window.location.href = "<?= base_url(); ?>geography/add_municipality";
     });
 
     $("body").off("click", "#submit_municipality_remain, #submit_municipality_clear, #submit_municipality").on("click", "#submit_municipality_remain, #submit_municipality_clear, #submit_municipality", function() {
@@ -88,7 +88,7 @@
 
         $.ajax({
             type: "post",
-            url: "/geography/save_municipality",
+            url: "<?= base_url(); ?>geography/save_municipality",
             data: {
                 "municipality": municipality_object
             }
@@ -99,11 +99,11 @@
             }
 
             if ($(that).attr("id") === "submit_municipality_remain") {
-                window.location.href = "/geography/edit_municipality/" + data;
+                window.location.href = "<?= base_url(); ?>geography/edit_municipality/" + data;
             } else if ($(that).attr("id") === "submit_municipality_clear") {
-                window.location.href = "/geography/add_municipality";
+                window.location.href = "<?= base_url(); ?>geography/add_municipality";
             } else if ($(that).attr("id") === "submit_municipality") {
-                window.location.href = "/geography/municipality_list";                
+                window.location.href = "<?= base_url(); ?>geography/municipality_list";                
             }
         });
     });

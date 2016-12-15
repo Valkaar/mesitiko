@@ -24,7 +24,7 @@
                     </div>
                     <div id="navbar" class="collapse navbar-collapse pull-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/dashboard">Αρχική</a></li>
+                            <li class="active"><a href="<?= base_url(); ?>dashboard">Αρχική</a></li>
                             <li><a data-toggle="modal" data-target="#information_modal" class="information_modal_toggler">Πληροφορίες</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -71,9 +71,9 @@
         $("body").off("click", "#submit_logout").on("click", "#submit_logout", function () {
             $.ajax({
                 type: "post",
-                url: "/login/logout_auth"
+                url: "<?= base_url(); ?>login/logout_auth"
             }).done(function (data) {
-                window.location.href = "/";
+                window.location.href = "<?= base_url(); ?>";
             });
         });
     </script>

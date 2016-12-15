@@ -64,10 +64,10 @@
 </form>
 <script>
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/geography/area_list";
+        window.location.href = "<?= base_url(); ?>geography/area_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/geography/add_area";
+        window.location.href = "<?= base_url(); ?>geography/add_area";
     });
 
     $("body").off("click", "#submit_area_remain, #submit_area_clear, #submit_area").on("click", "#submit_area_remain, #submit_area_clear, #submit_area", function() {
@@ -88,7 +88,7 @@
 
         $.ajax({
             type: "post",
-            url: "/geography/save_area",
+            url: "<?= base_url(); ?>geography/save_area",
             data: {
                 "area": area_object
             }
@@ -99,11 +99,11 @@
             }
 
             if ($(that).attr("id") === "submit_area_remain") {
-                window.location.href = "/geography/edit_area/" + data;
+                window.location.href = "<?= base_url(); ?>geography/edit_area/" + data;
             } else if ($(that).attr("id") === "submit_area_clear") {
-                window.location.href = "/geography/add_area";
+                window.location.href = "<?= base_url(); ?>geography/add_area";
             } else if ($(that).attr("id") === "submit_area") {
-                window.location.href = "/geography/area_list";                
+                window.location.href = "<?= base_url(); ?>geography/area_list";                
             }
         });
     });

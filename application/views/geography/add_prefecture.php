@@ -52,10 +52,10 @@
 </form>
 <script>
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/geography/prefecture_list";
+        window.location.href = "<?= base_url(); ?>geography/prefecture_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/geography/add_prefecture";
+        window.location.href = "<?= base_url(); ?>geography/add_prefecture";
     });
 
     $("body").off("click", "#submit_prefecture_remain, #submit_prefecture_clear, #submit_prefecture").on("click", "#submit_prefecture_remain, #submit_prefecture_clear, #submit_prefecture", function() {
@@ -74,7 +74,7 @@
 
         $.ajax({
             type: "post",
-            url: "/geography/save_prefecture",
+            url: "<?= base_url(); ?>geography/save_prefecture",
             data: {
                 "prefecture": prefecture_object
             }
@@ -85,11 +85,11 @@
             }
 
             if ($(that).attr("id") === "submit_prefecture_remain") {
-                window.location.href = "/geography/edit_prefecture/" + data;
+                window.location.href = "<?= base_url(); ?>geography/edit_prefecture/" + data;
             } else if ($(that).attr("id") === "submit_prefecture_clear") {
-                window.location.href = "/geography/add_prefecture";
+                window.location.href = "<?= base_url(); ?>geography/add_prefecture";
             } else if ($(that).attr("id") === "submit_prefecture") {
-                window.location.href = "/geography/prefecture_list";                
+                window.location.href = "<?= base_url(); ?>geography/prefecture_list";                
             }
         });
     });
