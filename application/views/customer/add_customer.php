@@ -137,7 +137,7 @@
         window.location.href = "<?= base_url(); ?>customer/add_customer";
     });
 
-    $("body").off("click", "#submit_customer, #submit_customer_clear, #submit_customer_remain").on("click", "#submit_customer, submit_customer_clear, #submit_customer_remain", function () {
+    $("body").off("click", "#submit_customer, #submit_customer_clear, #submit_customer_remain").on("click", "#submit_customer, #submit_customer_clear, #submit_customer_remain", function () {
         var that = this;
         
         if (!$("#add_customer_form").valid()) {
@@ -172,7 +172,7 @@
                 $("#is_edit").val(1);
                 $("#customer_id").val(data);
             }
-            
+            console.log($(that).attr("id"), "<?= base_url(); ?>customer/add_customer");
             if ($(that).attr("id") === "submit_customer_remain") {
                 window.location.href = "<?= base_url(); ?>customer/edit_customer/" + data;
             } else if ($(that).attr("id") === "submit_customer_clear") {

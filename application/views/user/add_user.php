@@ -93,7 +93,7 @@
         "state": true
     });
 
-    $("body").off("click", "#submit_user").on("click", "#submit_user", function () {
+    $("body").off("click", "#submit_user, #submit_user_remain, #submit_user_clear").on("click", "#submit_user, #submit_user_remain, #submit_user_clear", function () {
         var that = this;
         
         if (!$("#add_user_form").valid()) {

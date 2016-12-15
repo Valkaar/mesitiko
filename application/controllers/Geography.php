@@ -26,7 +26,7 @@ class Geography extends CI_Controller {
 
         $data = array(
             "head_view" => $this->load->view("general/head", array(), true),
-            "header_view" => $this->load->view("general/header", array("header_title" => "Προσθήκη νομού"), true),
+            "header_view" => $this->load->view("general/header", array("header_title" => "Επεξεργασία νομού"), true),
             "content_view" => $this->load->view("geography/add_prefecture", $content_data, true),
             "side_view" => $this->load->view("general/side", array(), true),
             "footer_view" => $this->load->view("general/footer", array(), true),
@@ -67,7 +67,7 @@ class Geography extends CI_Controller {
 
         $data = array(
             "head_view" => $this->load->view("general/head", array(), true),
-            "header_view" => $this->load->view("general/header", array("header_title" => "Προσθήκη νομού"), true),
+            "header_view" => $this->load->view("general/header", array("header_title" => "Επεξεργασία δήμου"), true),
             "content_view" => $this->load->view("geography/add_municipality", $content_data, true),
             "side_view" => $this->load->view("general/side", array(), true),
             "footer_view" => $this->load->view("general/footer", array(), true),
@@ -108,7 +108,7 @@ class Geography extends CI_Controller {
 
         $data = array(
             "head_view" => $this->load->view("general/head", array(), true),
-            "header_view" => $this->load->view("general/header", array("header_title" => "Προσθήκη νομού"), true),
+            "header_view" => $this->load->view("general/header", array("header_title" => "Επεξεργασία περιοχής"), true),
             "content_view" => $this->load->view("geography/add_area", $content_data, true),
             "side_view" => $this->load->view("general/side", array(), true),
             "footer_view" => $this->load->view("general/footer", array(), true),

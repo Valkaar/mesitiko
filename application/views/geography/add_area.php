@@ -11,7 +11,7 @@
                 <select class="form-control selectpicker" id="area_municipality_id" title="Επιλέξτε δήμο..." style="width: 100%;">
                     <?php foreach ($municipalities as $municipality) { ?>
                         <?php
-                        if (!empty($municipality_data) && isset($municipality_data["area_municipality_id"]) && $municipality_data["area_municipality_id"] == $municipality["municipality_id"]) {
+                        if (!empty($area_data) && isset($area_data["area_municipality_id"]) && $area_data["area_municipality_id"] == $municipality["municipality_id"]) {
                             $selected = " selected";
                         } else {
                             $selected = "";
