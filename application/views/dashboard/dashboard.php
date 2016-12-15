@@ -19,7 +19,7 @@
     <div class="row button-row">
         <div class="col-md-2"></div>
         <div class="col-md-2 text-center">
-            <a class="btn btn-lg btn-primary dashboard-button" href="<?= base_url(); ?>/customer/customer_list">Λίστα<br/>Πελατών</a>
+            <a class="btn btn-lg btn-primary dashboard-button" href="<?= base_url(); ?>customer/customer_list">Λίστα<br/>Πελατών</a>
         </div>
         <div class="col-md-2 text-center">
             <a class="btn btn-lg btn-primary dashboard-button" href="<?= base_url(); ?>user/user_list">Λίστα<br/>Χρηστών</a>

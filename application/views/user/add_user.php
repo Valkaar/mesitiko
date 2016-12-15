@@ -130,7 +130,7 @@
             } else if ($(that).attr("id") === "submit_user_clear") {
                 window.location.href = "<?= base_url(); ?>user/add_user";
             } else if ($(that).attr("id") === "submit_user") {
-                window.location.href = "<?= base_url(); ?>/user/user_list";                
+                window.location.href = "<?= base_url(); ?>user/user_list";                
             }
         });
     });

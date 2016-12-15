@@ -332,7 +332,7 @@
             } else if ($(that).attr("id") === "submit_request_clear") {
                 window.location.href = "<?= base_url(); ?>request/add_request";
             } else if ($(that).attr("id") === "submit_request") {
-                window.location.href = "<?= base_url(); ?>/request/request_list";                
+                window.location.href = "<?= base_url(); ?>request/request_list";                
             }
         });
 
