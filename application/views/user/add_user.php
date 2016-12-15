@@ -107,9 +107,11 @@
             "password": $("#password").val(),
             "email": $("#email").val(),
             "status": $("#status").val(),
+            "is_admin": $('#is_admin').bootstrapSwitch('state'),
             
-            "is_admin": $('#is_admin').bootstrapSwitch('state')
-        }
+            "is_edit": $("#is_edit").val(),
+            "user_id": $("#user_id").val()
+        };
         
         $.ajax({
             type: "post",

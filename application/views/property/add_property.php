@@ -254,6 +254,8 @@
     <input type="hidden" id="property_id" value="<?= !empty($property_data) ? $property_data["property_id"] : 0; ?>">
 </form>
 <script>
+    var use_file_queue = false;
+    
     $("#add_property_form").validate();
 
     $("#property_photos").sortable();
@@ -263,6 +265,67 @@
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
         window.location.href = "<?= base_url(); ?>property/add_property";
+    });
+    
+    $("body").off("click", "#submit_property").on("click", "#submit_property", function() {
+        if (use_file_queue) {
+            return false;
+        }
+        
+        if (!$("#add_property_form").valid()) {
+            return false;
+        }
+        var property_object = {
+            "transaction_type": $("#transaction_type_id").val(),
+            "property_type": $("#property_type_id").val(),
+            "property_status": $("#property_status_id").val(),
+            "property_prefecture": $("#prefecture_id").val(),
+            "property_municipality": $("#municipality_id").val(),
+            "property_area": $("#area_id").val(),
+            "property_address": $("#address").val(),
+            "property_address_no": $("#address_no").val(),
+            "property_sqm": $("#property_sqm").val(),
+            "heating_id": $("#heating_id").val(),
+            "property_price": $("#property_price").val(),
+            "property_levels": $("#property_levels").val(),
+            "property_floor": $("#property_floor").val(),
+            "property_balcony_sqm": $("#balcony_sqm").val(),
+            "property_garden_sqm": $("#garden_sqm").val(),
+            "property_description": $("#property_description").val(),
+            "property_description_en": $("#property_description_en").val(),
+            "property_label": $("#property_label").val(),
+            "property_furnished": $('#is_furnished').bootstrapSwitch('state'),
+            "has_fireplace": $('#has_fireplace').bootstrapSwitch('state'),
+            "property_fireplace": $("#fireplace_no").val(),
+            "has_aircondition": $('#has_aircondition').bootstrapSwitch('state'),
+            "propery_air_condition": $("#aircondition_no").val(),
+            "is_edit": $("#is_edit").val(),
+            "property_id": $("#property_id").val(),
+        };
+
+        $.ajax({
+            type: "post",
+            url: "<?= base_url(); ?>property/save_property",
+            data: {
+                "property": property_object
+            }
+        }).done(function (data) {
+            if ($("#is_edit").val() == 0) {
+                $("#is_edit").val(1);
+                $("#property_id").val(data);
+            }
+
+                window.location.href = "<?= base_url(); ?>property/property_list";
+
+//                    if (submitButton.attr("id") === "submit_property_remain") {
+//                        window.location.href = "/property/edit_property/" + data;
+//                    } else if (submitButton.attr("id") === "submit_property_clear") {
+//                        window.location.href = "/property/add_property";
+//                    } else if (submitButton.attr("id") === "submit_property") {
+//                        window.location.href = "/property/property_list";
+//                    }
+
+        });
     });
 
     $("#property_photos").dropzone({
@@ -306,6 +369,7 @@
                     });
             this.on("addedfile", function (file) {
                 console.log(file);
+                use_file_queue = true;
             });
             this.on("success", function (file, response) {
                 console.log(file);
