@@ -174,11 +174,11 @@
             }
             
             if ($(that).attr("id") === "submit_customer_remain") {
-                window.location.href = "/customer/edit_customer/" + data;
+                window.location.href = "<?= base_url(); ?>customer/edit_customer/" + data;
             } else if ($(that).attr("id") === "submit_customer_clear") {
-                window.location.href = "/customer/add_customer";
+                window.location.href = "<?= base_url(); ?>customer/add_customer";
             } else if ($(that).attr("id") === "submit_customer") {
-                window.location.href = "/customer/customer_list";                
+                window.location.href = "<?= base_url(); ?>customer/customer_list";                
             }
         });
 

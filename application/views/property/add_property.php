@@ -259,24 +259,24 @@
     $("#property_photos").sortable();
 
     $("body").off("click", "#back_to_list").on("click", "#back_to_list", function () {
-        window.location.href = "/property/property_list";
+        window.location.href = "<?= base_url(); ?>property/property_list";
     });
     $("body").off("click", "#clear_form").on("click", "#clear_form", function () {
-        window.location.href = "/property/add_property";
+        window.location.href = "<?= base_url(); ?>property/add_property";
     });
 
     $("#property_photos").dropzone({
-        url: "/property/upload_files",
+        url: "<?= base_url(); ?>property/upload_files",
         autoProcessQueue: false,
         parallelUploads: 20,
         init: function () {
             var myDropzone = this;
-            $.get('/property/get_existing_files?property_id=' + $("#property_id").val(), function (data) {
+            $.get('<?= base_url(); ?>property/get_existing_files?property_id=' + $("#property_id").val(), function (data) {
                 $.each(data, function (key, value) {
                     var mockFile = {name: value.name, size: value.size};
 
                     myDropzone.options.addedfile.call(myDropzone, mockFile);
-                    myDropzone.options.thumbnail.call(myDropzone, mockFile, "/assets/uploaded_files/" + $("#property_id").val() + "/" + value.name);
+                    myDropzone.options.thumbnail.call(myDropzone, mockFile, "<?= base_url(); ?>assets/uploaded_files/" + $("#property_id").val() + "/" + value.name);
 
                     mockFile.previewElement.classList.add('dz-success');
                     mockFile.previewElement.classList.add('dz-complete');
@@ -345,7 +345,7 @@
 
                 $.ajax({
                     type: "post",
-                    url: "/property/save_property",
+                    url: "<?= base_url(); ?>property/save_property",
                     data: {
                         "property": property_object
                     }
@@ -355,7 +355,7 @@
                         $("#property_id").val(data);
                     }
                     
-                        window.location.href = "/property/property_list";
+                        window.location.href = "<?= base_url(); ?>property/property_list";
 
 //                    if (submitButton.attr("id") === "submit_property_remain") {
 //                        window.location.href = "/property/edit_property/" + data;

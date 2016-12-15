@@ -120,12 +120,12 @@ class Property extends CI_Controller {
         $this->load->model("Property_model");
         $property_id = $this->input->post("property_id");
 
-        if (!file_exists("assets/uploaded_files/{$property_id}/")) {
-            mkdir("assets/uploaded_files/{$property_id}/", 0777, true);
+        if (!file_exists(FCPATH . "assets/uploaded_files/{$property_id}/")) {
+            mkdir(FCPATH . "assets/uploaded_files/{$property_id}/", 0777, true);
         }
 
         $config = array(
-            'upload_path' => "assets/uploaded_files/{$property_id}/",
+            'upload_path' => (FCPATH . "assets/uploaded_files/{$property_id}/"),
             'allowed_types' => 'gif|jpg|png',
             'max_size' => 10000,
             'max_width' => 2048,
@@ -134,7 +134,7 @@ class Property extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        if (!file_exists("assets/uploaded_files/{$property_id}/{$_FILES["file"]["name"]}")) {
+        if (!file_exists(FCPATH . "assets/uploaded_files/{$property_id}/{$_FILES["file"]["name"]}")) {
             if (!$this->upload->do_upload('file')) {
                 $error = array('error' => $this->upload->display_errors());
 
@@ -154,12 +154,12 @@ class Property extends CI_Controller {
         
         $result = array();
 
-        $files = scandir("assets/uploaded_files/{$property_id}/");
+        $files = scandir(FCPATH . "assets/uploaded_files/{$property_id}/");
         if (false !== $files) {
             foreach ($files as $file) {
                 if ('.' != $file && '..' != $file) {
                     $obj['name'] = $file;
-                    $obj['size'] = filesize("assets/uploaded_files/{$property_id}/" . $file);
+                    $obj['size'] = filesize(FCPATH . "assets/uploaded_files/{$property_id}/" . $file);
                     $result[] = $obj;
                 }
             }
