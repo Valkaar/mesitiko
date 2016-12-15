@@ -552,7 +552,7 @@ class Request_model extends CI_Model {
         }
         
         if (!empty($request_result["request_air_condition"])) {
-            $property_query .= "and p.property_air_condition > 0 ";
+            $property_query .= "and p.propery_air_condition > 0 ";
         }
         
         if (!empty($request_result["request_pool_sqm_from"])) {
